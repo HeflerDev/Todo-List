@@ -5,16 +5,14 @@ const storageHelpers = () => {
 
     const findDataIndexByKey = (key, value) => {
         let item = localStorage.getItem(key);
-        /*
-        JSON.parse(item).forEach(data, index) {
+        JSON.parse(item).forEach((data, index) => {
             let obj = JSON.parse(data);
             if (value === obj.name) {
                 return index;
             } else {
                 console.log('Error: No matching found');
             }
-        }
-        */
+        });
     }
 
     const removeTaskFromStorage = (key, value) => {
