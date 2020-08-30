@@ -1,7 +1,7 @@
 const render = (() => {
 
-    const container = (elementId, elementParent, elementClass = null) => {
-        let div = document.createElement('div');
+    const container = (elementId, elementParent, elementClass = null, element = 'div') => {
+        let div = document.createElement(element);
         div.id = elementId;
         console.log(elementClass)
         if (elementClass) {
@@ -18,6 +18,7 @@ const render = (() => {
         document.getElementById(elementParent).appendChild(div);
         return div;
     }
+
     return { container }
 })();
 
