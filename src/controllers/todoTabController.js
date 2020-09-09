@@ -33,8 +33,8 @@ const todoTabController = () => {
 
     const allProjects = () => {
         Object.keys(localStorage).forEach((key) => {
-            if (document.getElementById(`project-${key}`)) {
-                document.getElementById(`project-${key}`).remove();
+            if (document.getElementById(`project-${userData.convertToValidId(key)}`)) {
+                document.getElementById(`project-${userData.convertToValidId(key)}`).remove();
             }
             todoTab.renderProject(key).addEventListener('click', () => {
                 forms.newTaskForm(key).addEventListener('click', () => submitTaskForm(key));
@@ -82,8 +82,8 @@ const todoTabController = () => {
                 if  (userData.validateProjectInput(formVal)) {
                         storageHelpers.createNewProject(formVal);
                         document.getElementById('project-form').remove();
+                        allProjects();
                 }
-                allProjects();
             });
         } else {
             alert('Form Already Displayed');

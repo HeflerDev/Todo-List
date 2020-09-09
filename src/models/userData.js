@@ -10,9 +10,9 @@ const userData = (() => {
         }
     }
 
-    const convertToValidId = (data) => id.replace(/\s/g, '-');
+    const convertToValidId = (data) => data.replace(/\s/g, '-');
 
-    const convertIdToText = (data) => id.replace(/-+/g, ' ')
+    const convertIdToText = (data) => data.replace(/-+/g, ' ')
 
     const validateProjectInput = (data) => {
         let validData = /^[a-zA-Z]/g ;
@@ -31,7 +31,7 @@ const userData = (() => {
         }
     };
 
-    return { createTaskObj, validateProjectInput, validateTaskInput }
+    return { createTaskObj, validateProjectInput, validateTaskInput, convertToValidId }
 })();
 
 export default userData;

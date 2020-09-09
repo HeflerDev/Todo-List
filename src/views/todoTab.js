@@ -2,13 +2,12 @@ import render from './render';
 import storageHelpers from '../models/storageHelpers';
 
 const todoTab = (() => {
-    // id pay classo
+
     const renderProject = (elementId) => {
         render.container(`project-${elementId}`, 'content-section');
         render.container(`project-${elementId}-name`, `project-${elementId}`);
-        let text = document.createElement('h2');
+        let text = render.container(elementId, `project-${elementId}-name`, null, 'h2');
         text.textContent = elementId;
-        document.getElementById(`project-${elementId}-name`).appendChild(text);
         let newTaskBtn = render.container(`project-${elementId}-button`, `project-${elementId}`, null, 'button');
         newTaskBtn.textContent = 'Add New Task';
         return newTaskBtn ;

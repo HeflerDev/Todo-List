@@ -1,8 +1,13 @@
+import userData from './../models/userData'
+
 const render = (() => {
 
     const container = (elementId, elementParent, elementClass = null, element = 'div') => {
         let div = document.createElement(element);
-        div.id = elementId;
+        if (elementId) {
+            div.id = userData.convertToValidId(elementId);
+        }
+            elementParent = userData.convertToValidId(elementParent);
         if (elementClass) {
             if (Array.isArray(elementClass)) {
                 elementClass.forEach((item) => {

@@ -1,3 +1,5 @@
+import userData from './userData'
+
 const storageHelpers = (() => {
     /*
      * Since the localStorage has 2 layers, this file adds aditional helpers
