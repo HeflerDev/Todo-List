@@ -16,7 +16,10 @@ const todoTab = (() => {
 
     const renderTask = (project, obj) => {
         render.container(`task-${project}-${obj.name}`, `project-${project}`);
-        render.container(`task-${project}-${obj.name}-name`, `task-${project}-${obj.name}`).textContent = obj.name;
+        render.container(`task-${project}-${obj.name}-name-container`, `task-${project}-${obj.name}`, ['flex-grid'])
+            let completeTaskBtn = render.container(`task-${project}-${obj.name}-complete-task-btn`, `task-${project}-${obj.name}-name-container`, 'col-1', 'button');
+            completeTaskBtn.textContent = 'Complete Task';
+            render.container(`task-${project}-${obj.name}-name`, `task-${project}-${obj.name}-name-container`, ['col-11']).textContent = obj.name;
         render.container(`task-${project}-${obj.name}-content-container`, `task-${project}-${obj.name}`, ['flex-grid']);
             render.container(`task-${project}-${obj.name}-content`, `task-${project}-${obj.name}-content-container`, ['col-10']).textContent = obj.content;
             render.container(`task-${project}-${obj.name}-content-container-buttons`, `task-${project}-${obj.name}-content-container`, 'col-2');
@@ -32,7 +35,8 @@ const todoTab = (() => {
         return {
             'todoBtn':todoBtn,
             'editBtn':editBtn,
-            'deleteBtn':deleteBtn
+            'deleteBtn':deleteBtn,
+            'completeBtn':completeTaskBtn
         }
     };
 

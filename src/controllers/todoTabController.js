@@ -60,6 +60,7 @@ const todoTabController = () => {
 
                 let obj = JSON.parse(item);
                 let taskBtns = todoTab.renderTask(key, obj);
+                taskBtns.completeBtn.addEventListener('click', () => { completeTask(key, item) });
                 taskBtns.todoBtn.addEventListener('click', () => {
                     let submitBtn = forms.newTodoForm();
                     submitBtn.addEventListener('click', () => {
