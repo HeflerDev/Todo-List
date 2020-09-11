@@ -1,4 +1,15 @@
 @import  './reset.css' ;
 @import './framework.css' ;
 
+* {
+    border: solid red 1px;
+}
+
+$color-secondary: rgb(190,190,190);
+
+#left-section {
+    height: 100vh;
+    background-color: $color-secondary;
+}
+
 

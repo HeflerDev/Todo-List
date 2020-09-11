@@ -16,6 +16,17 @@ const todoTabController = () => {
         }
     };
 
+    const placeholdData = (obj) => {
+        document.getElementById('name-input').value = obj.name;
+        document.getElementById('content-input').value = obj.content;
+    };
+
+    const gatherDataFromForm = () => {
+        let name = document.getElementById('name-input').value;
+        let content = document.getElementById('content-input').value;
+        return userData.createTaskObj(name, content, null, null)
+    };
+
     const completeTodo = (key, taskName, todo) => {
         let taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
         let stg = JSON.parse(localStorage.getItem(key));
@@ -48,9 +59,8 @@ const todoTabController = () => {
             JSON.parse(localStorage.getItem(key)).forEach((item) => {
 
                 let obj = JSON.parse(item);
-                // Todo Section
-                let todoBtn = todoTab.renderTask(key, obj);
-                todoBtn.addEventListener('click', () => {
+                let taskBtns = todoTab.renderTask(key, obj);
+                taskBtns.todoBtn.addEventListener('click', () => {
                     let submitBtn = forms.newTodoForm();
                     submitBtn.addEventListener('click', () => {
                         let val = document.getElementById('todo-form-input').value;
@@ -63,6 +73,23 @@ const todoTabController = () => {
                         checkBtn.addEventListener('click', () => completeTodo(key, obj.name, todo));
                     });
                 };
+                taskBtns.deleteBtn.addEventListener('click', () => {
+                    storageHelpers.removeTaskFromStorage(key, item);
+                    renderTab();
+                });
+                taskBtns.editBtn.addEventListener('click', () => {
+                    let editTaskForm = forms.newTaskForm(key);
+                    placeholdData(JSON.parse(item));
+                    editTaskForm.addEventListener('click', () => {
+                        if (userData.validateTaskInput(obj)) {
+                            let obj = gatherDataFromForm();
+                            storageHelpers.removeTaskFromStorage(key, item);
+                            storageHelpers.addNewTaskToProject(key, obj);
+                            renderTab();
+                        };
+                    });
+
+                });
             });
         });
     };
@@ -75,6 +102,11 @@ const todoTabController = () => {
         });
     };
 
+    const renderTab = () => {
+        allProjects();
+        allTasks();
+    };
+
     const newProjectForm = () => {
         if (! document.getElementById('project-form')) {
             forms.newProjectForm().addEventListener('click', () => {
@@ -82,7 +114,7 @@ const todoTabController = () => {
                 if  (userData.validateProjectInput(formVal)) {
                         storageHelpers.createNewProject(formVal);
                         document.getElementById('project-form').remove();
-                        allProjects();
+                        renderTab();
                 }
             });
         } else {
@@ -90,9 +122,9 @@ const todoTabController = () => {
         }
     }
 
+
     todoTab.newProjectBtn().addEventListener('click', newProjectForm);
-    allProjects();
-    allTasks();
+    renderTab();
 
     return { allProjects, newProjectForm }
 };

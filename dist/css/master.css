@@ -1,4 +1,10 @@
 @import url(./reset.css);
 @import url(./framework.css);
+* {
+  border: solid red 1px; }
+
+#left-section {
+  height: 100vh;
+  background-color: #bebebe; }
 
 /*# sourceMappingURL=master.css.map */

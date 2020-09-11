@@ -1,5 +1,3 @@
-import userData from './userData'
-
 const storageHelpers = (() => {
     /*
      * Since the localStorage has 2 layers, this file adds aditional helpers
@@ -21,9 +19,7 @@ const storageHelpers = (() => {
 
     const removeTaskFromStorage = (key, value) => {
         let array = JSON.parse(localStorage.getItem(key));
-        console.log(array);
         array.splice(findDataIndexByKey(key, value), 1);
-        console.log(array);
         localStorage.removeItem(key);
         localStorage.setItem(key, JSON.stringify(array));
     }
