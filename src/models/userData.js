@@ -31,7 +31,11 @@ const userData = (() => {
         }
     };
 
-    return { createTaskObj, validateProjectInput, validateTaskInput, convertToValidId }
+    const validateTodoInput = (data) => {
+        return /^[a-zA-Z]/.test(data);
+    };
+
+    return { createTaskObj, validateProjectInput, validateTodoInput, validateTaskInput, convertToValidId }
 })();
 
 export default userData;

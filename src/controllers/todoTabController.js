@@ -12,9 +12,25 @@ const todoTabController = () => {
         if (userData.validateTaskInput(obj)) {
             storageHelpers.addNewTaskToProject(key, obj);
         } else {
-            console.log('Data Submission returned FALSE');
+            console.error('Data Submission returned FALSE');
         }
     };
+
+    const completeTodo = (key, taskName, todoDescription) => {
+            let project = JSON.parse(localStorage.getItem(key));
+            let task = JSON.parse(project[storageHelpers.findDataIndexByKey(key, taskName)]);
+            let todo = task.todos.splice(storageHelpers.accessTodoFromTask(key, taskName, todoDescription), 1);
+            todo = JSON.parse(todo);
+            if (todo[1] === false) {
+                todo[1] = true;
+            } else {
+                todo[1] = false;
+            }
+            task.todos.push(JSON.stringify(todo));
+            storageHelpers.removeTaskFromStorage(key, taskName);
+            storageHelpers.addNewTaskToProject(key, task);
+            renderTab();
+    }
 
     const placeholdData = (obj) => {
         document.getElementById('name-input').value = obj.name;
@@ -25,21 +41,6 @@ const todoTabController = () => {
         let name = document.getElementById('name-input').value;
         let content = document.getElementById('content-input').value;
         return userData.createTaskObj(name, content, null, null)
-    };
-
-    const completeTodo = (key, taskName, todo) => {
-        let taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
-        let stg = JSON.parse(localStorage.getItem(key));
-        console.log(stg[taskIndex]);
-        task = JSON.parse(stg[taskIndex]);
-        console.log(task);
-        task.todos.forEach((item) => {
-            if (item[0] === todo){
-                console.log(right);
-            } else {
-                console.log(item[0], todo);
-            }
-        });
     };
 
     const allProjects = () => {
@@ -65,13 +66,19 @@ const todoTabController = () => {
                     let submitBtn = forms.newTodoForm();
                     submitBtn.addEventListener('click', () => {
                         let val = document.getElementById('todo-form-input').value;
-                        storageHelpers.addNewTodoToTask(key, obj, val);
+                        if (userData.validateTodoInput(val)) {
+                            storageHelpers.addNewTodoToTask(key, obj, val);
+                        } else {
+                            console.error('Invalid Input')
+                        }
                     });
                 })
                 if (obj.todos.length > 0) {
                     obj.todos.forEach((todo) => {
-                        let checkBtn = todoTab.renderTodo(key, obj.name, todo);
-                        checkBtn.addEventListener('click', () => completeTodo(key, obj.name, todo));
+                        if (! storageHelpers.checkIfTodoIsCompleted(key, JSON.parse(item).name, JSON.parse(todo)[0])) {
+                            let checkBtn = todoTab.renderTodo(key, obj.name, todo);
+                            checkBtn.addEventListener('click', () => completeTodo(key, obj.name, JSON.parse(todo)[0]));
+                        }
                     });
                 };
                 taskBtns.deleteBtn.addEventListener('click', () => {
@@ -89,16 +96,7 @@ const todoTabController = () => {
                             renderTab();
                         };
                     });
-
                 });
-            });
-        });
-    };
-
-    const allTodos = () => {
-        Object.keys(localStorage).forEach((key) => {
-            JSON.parse(localStorage.getItem(key)).forEach((item) => {
-
             });
         });
     };

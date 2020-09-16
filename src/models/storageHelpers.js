@@ -46,12 +46,35 @@ const storageHelpers = (() => {
         }
     }
 
+    const accessTodoFromTask = (key, taskName, todo) => {
+        let taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
+        let stg = JSON.parse(localStorage.getItem(key));
+        let task = JSON.parse(stg[taskIndex]);
+        let todoIndex = -1;
+        task.todos.forEach((item, index) => {
+            if (JSON.parse(item)[0] === todo){
+                todoIndex = index;
+            }
+        });
+        return todoIndex ;
+    };
+
+    const checkIfTodoIsCompleted = (key, taskName, todo) => {
+        let taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
+        let project = JSON.parse(localStorage.getItem(key));
+        let task = JSON.parse(project[taskIndex]);
+        let foundTodo = task.todos[accessTodoFromTask(key, taskName, todo)];
+        return JSON.parse(foundTodo)[1];
+    };
+
     return {
         addNewTaskToProject,
         addNewTodoToTask,
         createNewProject,
         removeTaskFromStorage,
-        findDataIndexByKey
+        findDataIndexByKey,
+        accessTodoFromTask,
+        checkIfTodoIsCompleted
     }
 })();
 
