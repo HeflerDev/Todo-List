@@ -17,20 +17,14 @@ const todoTabController = () => {
     };
 
     const completeTodo = (key, taskName, todoDescription) => {
-            let project = JSON.parse(localStorage.getItem(key));
-            let task = JSON.parse(project[storageHelpers.findDataIndexByKey(key, taskName)]);
-            let todo = task.todos.splice(storageHelpers.accessTodoFromTask(key, taskName, todoDescription), 1);
-            todo = JSON.parse(todo);
-            if (todo[1] === false) {
-                todo[1] = true;
-            } else {
-                todo[1] = false;
-            }
-            task.todos.push(JSON.stringify(todo));
-            storageHelpers.removeTaskFromStorage(key, taskName);
-            storageHelpers.addNewTaskToProject(key, task);
-            renderTab();
+        storageHelpers.changeTodoState(key, taskName, todoDescription);
+        displayTabContent();
     }
+
+    const completeTask = (key, taskName) => {
+        storageHelpers.changeTaskState(key, taskName);
+        displayTabContent();
+    };
 
     const placeholdData = (obj) => {
         document.getElementById('name-input').value = obj.name;
@@ -40,10 +34,10 @@ const todoTabController = () => {
     const gatherDataFromForm = () => {
         let name = document.getElementById('name-input').value;
         let content = document.getElementById('content-input').value;
-        return userData.createTaskObj(name, content, null, null)
+        return userData.createTaskObj(name, content, null, null);
     };
 
-    const allProjects = () => {
+    const displayTabContent = () => {
         Object.keys(localStorage).forEach((key) => {
             if (document.getElementById(`project-${userData.convertToValidId(key)}`)) {
                 document.getElementById(`project-${userData.convertToValidId(key)}`).remove();
@@ -51,14 +45,7 @@ const todoTabController = () => {
             todoTab.renderProject(key).addEventListener('click', () => {
                 forms.newTaskForm(key).addEventListener('click', () => submitTaskForm(key));
             })
-        });
-    }
-
-    const allTasks = () => {
-        Object.keys(localStorage).forEach((key) => {
-
             JSON.parse(localStorage.getItem(key)).forEach((item) => {
-
                 let obj = JSON.parse(item);
                 let taskBtns = todoTab.renderTask(key, obj);
                 taskBtns.completeBtn.addEventListener('click', () => { completeTask(key, item) });
@@ -82,8 +69,8 @@ const todoTabController = () => {
                     });
                 };
                 taskBtns.deleteBtn.addEventListener('click', () => {
-                    storageHelpers.removeTaskFromStorage(key, item);
-                    renderTab();
+                    storageHelpers.removeTaskFromProject(key, item);
+                    displayTabContent();
                 });
                 taskBtns.editBtn.addEventListener('click', () => {
                     let editTaskForm = forms.newTaskForm(key);
@@ -91,9 +78,9 @@ const todoTabController = () => {
                     editTaskForm.addEventListener('click', () => {
                         if (userData.validateTaskInput(obj)) {
                             let obj = gatherDataFromForm();
-                            storageHelpers.removeTaskFromStorage(key, item);
+                            storageHelpers.removeTaskFromProject(key, item);
                             storageHelpers.addNewTaskToProject(key, obj);
-                            renderTab();
+                            displayTabContent();
                         };
                     });
                 });
@@ -101,19 +88,14 @@ const todoTabController = () => {
         });
     };
 
-    const renderTab = () => {
-        allProjects();
-        allTasks();
-    };
-
-    const newProjectForm = () => {
+    const displayNewProjectForm = () => {
         if (! document.getElementById('project-form')) {
             forms.newProjectForm().addEventListener('click', () => {
                 let formVal = document.getElementById('project-name').value;
                 if  (userData.validateProjectInput(formVal)) {
                         storageHelpers.createNewProject(formVal);
                         document.getElementById('project-form').remove();
-                        renderTab();
+                        displayTabContent();
                 }
             });
         } else {
@@ -121,11 +103,10 @@ const todoTabController = () => {
         }
     }
 
+    todoTab.newProjectBtn().addEventListener('click', displayNewProjectForm);
+    displayTabContent();
 
-    todoTab.newProjectBtn().addEventListener('click', newProjectForm);
-    renderTab();
-
-    return { allProjects, newProjectForm }
+    return { displayTabContent, displayNewProjectForm }
 };
 
 export default todoTabController ;

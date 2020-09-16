@@ -1,7 +1,8 @@
 const storageHelpers = (() => {
-    /*
-     * Since the localStorage has 2 layers, this file adds aditional helpers
-     */
+
+    const createNewProject = (key) => {
+        localStorage.setItem(key, JSON.stringify([]));
+    }
 
     const findDataIndexByKey = (key, value) => {
         let item = localStorage.getItem(key);
@@ -17,15 +18,11 @@ const storageHelpers = (() => {
         return result;
     }
 
-    const removeTaskFromStorage = (key, value) => {
+    const removeTaskFromProject = (key, value) => {
         let array = JSON.parse(localStorage.getItem(key));
         array.splice(findDataIndexByKey(key, value), 1);
         localStorage.removeItem(key);
         localStorage.setItem(key, JSON.stringify(array));
-    }
-
-    const createNewProject = (key) => {
-        localStorage.setItem(key, JSON.stringify([]));
     }
 
     const addNewTaskToProject = (key, obj) => {
@@ -41,12 +38,16 @@ const storageHelpers = (() => {
             let project = JSON.parse(localStorage.getItem(key));
             let task = JSON.parse(project[taskIndex]);
             task.todos.push(JSON.stringify([todo, false]));
-            removeTaskFromStorage(key, obj.name);
+            removeTaskFromProject(key, obj.name);
             addNewTaskToProject(key, task);
         }
     }
 
-    const accessTodoFromTask = (key, taskName, todo) => {
+    const removeTodoFromTask = (key, taskName, todoDescription) => {
+        // Code
+    };
+
+    const getTodoIndex = (key, taskName, todo) => {
         let taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
         let stg = JSON.parse(localStorage.getItem(key));
         let task = JSON.parse(stg[taskIndex]);
@@ -63,18 +64,43 @@ const storageHelpers = (() => {
         let taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
         let project = JSON.parse(localStorage.getItem(key));
         let task = JSON.parse(project[taskIndex]);
-        let foundTodo = task.todos[accessTodoFromTask(key, taskName, todo)];
+        let foundTodo = task.todos[getTodoIndex(key, taskName, todo)];
         return JSON.parse(foundTodo)[1];
+    };
+
+    const changeTaskState = (key, taskName) => {
+        let project = JSON.parse(localStorage.getItem(key));
+        let task = JSON.parse(project[findDataIndexByKey(key, taskName)]);
+        task.status = true;
+        removeTaskFromProject(key, taskName);
+        addNewTaskToProject(key, task);
+    };
+
+    const changeTodoState = (key, taskName, todoDescription) => {
+        let project = JSON.parse(localStorage.getItem(key));
+        let task = JSON.parse(project[storageHelpers.findDataIndexByKey(key, taskName)]);
+        let todo = task.todos.splice(storageHelpers.getTodoIndex(key, taskName, todoDescription), 1);
+        todo = JSON.parse(todo);
+        if (todo[1] === false) {
+            todo[1] = true;
+        } else {
+            todo[1] = false;
+        }
+        task.todos.push(JSON.stringify(todo));
+        removeTaskFromProject(key, taskName);
+        addNewTaskToProject(key, task);
     };
 
     return {
         addNewTaskToProject,
         addNewTodoToTask,
         createNewProject,
-        removeTaskFromStorage,
+        removeTaskFromProject,
         findDataIndexByKey,
-        accessTodoFromTask,
-        checkIfTodoIsCompleted
+        getTodoIndex,
+        checkIfTodoIsCompleted,
+        changeTodoState,
+        changeTaskState
     }
 })();
 
