@@ -8,7 +8,11 @@ const todoTabController = () => {
     const submitTaskForm = (key) => {
         let name = document.getElementById('name-input').value;
         let content = document.getElementById('content-input').value;
-        let obj = userData.createTaskObj(name, content, null, null);
+        let difficulty = document.getElementById('difficulty-select').value;
+        let expiringDate = document.getElementById('date-input').value;
+        let obj = userData.createTaskObj(name, content, difficulty, expiringDate);
+        // console.log(Date.parse(obj.date));
+        // console.log(Date.now());
         if (userData.validateTaskInput(obj)) {
             storageHelpers.addNewTaskToProject(key, obj);
         } else {

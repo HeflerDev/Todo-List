@@ -28,9 +28,12 @@ const todoTab = (() => {
                 editBtn.textContent = 'Edit Task';
                 let deleteBtn = render.container(`task-${project}-${obj.name}-delete-button`, `task-${project}-${obj.name}-content-container-buttons`, null, 'button');
                 deleteBtn.textContent = 'Delete Task';
+        render.container(`task-${project}-${obj.name}-details-container`, `task-${project}-${obj.name}`, ['flex-grid']);
+            render.container(`task-${project}-${obj.name}-details-difficulty`, `task-${project}-${obj.name}-details-container`, 'col-6').textContent = obj.difficulty;
+            render.container(`task-${project}-${obj.name}-details-date`, `task-${project}-${obj.name}-details-container`, 'col-6').textContent = obj.date;
+
 
         render.container(`task-${project}-${obj.name}-todo`, `task-${project}-${obj.name}`)
-        // Continue from here
         let todoBtn = render.container(`task-${project}-${obj.name}-todo-button`, `task-${project}-${obj.name}`, null, 'button');
         todoBtn.textContent = 'Add new Todo';
         return {

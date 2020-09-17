@@ -30,10 +30,17 @@ const forms = (() => {
         render.container('difficulty-label', 'task-form', null, 'label').textContent = 'Difficulty';
         render.container('difficulty-select', 'task-form', null, 'select');
         let optOne = render.container('difficulty-option-1', 'difficulty-select', null, 'option');
+            optOne.textContent = 'Easy';
+            optOne.value = 'Easy' ;
         let optTwo = render.container('difficulty-option-2', 'difficulty-select', null, 'option');
+            optTwo.textContent = 'Medium';
+            optTwo.value = 'Medium' ;
         let optThree = render.container('difficulty-option-3', 'difficulty-select', null, 'option');
-
-
+            optThree.textContent = 'Hard';
+            optThree.value = 'Hard' ;
+        render.container('date-label', 'task-form', null, 'label');
+        let datePick = render.container('date-input', 'task-form', null, 'input');
+        datePick.type = 'date';
         let submitBtn = render.container('task-submit', 'task-form', null, 'input');
         submitBtn.value = 'Submit';
         submitBtn.type = 'submit';
