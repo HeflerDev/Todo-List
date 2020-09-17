@@ -16,7 +16,7 @@ const forms = (() => {
     };
 
     const newTaskForm = (project) => {
-        console.log('Rendering: Task Form');
+        console.log(`Rendering ${project} task form`);
         render.container('task-form-container', 'content-section', 'col-12');
         render.container('task-form', 'task-form-container', null, 'form');
         render.container('name-label', 'task-form', null, 'label').textContent = 'Name';
@@ -26,6 +26,13 @@ const forms = (() => {
         render.container('content-label', 'task-form', null, 'label').textContent = 'Content';
         render.container('content-input', 'task-form', null, 'textarea');
         document.getElementById('task-form').appendChild(document.createElement('br'));
+
+        render.container('difficulty-label', 'task-form', null, 'label').textContent = 'Difficulty';
+        render.container('difficulty-select', 'task-form', null, 'select');
+        let optOne = render.container('difficulty-option-1', 'difficulty-select', null, 'option');
+        let optTwo = render.container('difficulty-option-2', 'difficulty-select', null, 'option');
+        let optThree = render.container('difficulty-option-3', 'difficulty-select', null, 'option');
+
 
         let submitBtn = render.container('task-submit', 'task-form', null, 'input');
         submitBtn.value = 'Submit';

@@ -18,6 +18,11 @@ const storageHelpers = (() => {
         return result;
     }
 
+    const retrieveTaskData = (key, taskName) => {
+        let project = JSON.parse(localStorage.getItem(key));
+        return JSON.parse(project[findDataIndexByKey(key, taskName)]);
+    };
+
     const removeTaskFromProject = (key, value) => {
         let array = JSON.parse(localStorage.getItem(key));
         array.splice(findDataIndexByKey(key, value), 1);
@@ -44,7 +49,10 @@ const storageHelpers = (() => {
     }
 
     const removeTodoFromTask = (key, taskName, todoDescription) => {
-        // Code
+        let task = retrieveTaskData(key, taskName);
+        task.todos.splice(getTodoIndex(key, taskName, todoDescription));
+        removeTaskFromProject(key, taskName);
+        addNewTaskToProject(key, task);
     };
 
     const getTodoIndex = (key, taskName, todo) => {
@@ -69,6 +77,7 @@ const storageHelpers = (() => {
     };
 
     const changeTaskState = (key, taskName) => {
+        console.log(key, taskName)
         let project = JSON.parse(localStorage.getItem(key));
         let task = JSON.parse(project[findDataIndexByKey(key, taskName)]);
         task.status = true;
@@ -96,6 +105,7 @@ const storageHelpers = (() => {
         addNewTodoToTask,
         createNewProject,
         removeTaskFromProject,
+        removeTodoFromTask,
         findDataIndexByKey,
         getTodoIndex,
         checkIfTodoIsCompleted,

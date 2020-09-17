@@ -16,7 +16,6 @@ const render = (() => {
             } else {
                 div.classList.add(elementClass);
             }
-            console.log('render:container:Warning: No Class');
         }
         document.getElementById(elementParent).appendChild(div);
         return div;

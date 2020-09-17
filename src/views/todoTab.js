@@ -5,6 +5,7 @@ const todoTab = (() => {
 
     const renderProject = (elementId) => {
         render.container(`project-${elementId}`, 'content-section', ['box']);
+
         render.container(`project-${elementId}-container`, `project-${elementId}`, 'flex-grid');
         render.container(`project-${elementId}-name`, `project-${elementId}-container`, ['col-12', 'col-m-10']);
         let text = render.container(elementId, `project-${elementId}-name`, ['minibox', 'center'], 'h2');
@@ -43,8 +44,12 @@ const todoTab = (() => {
     const renderTodo = (project, taskName, todo) => {
         render.container(`task-${project}-${taskName}-${todo}-todo`, `task-${project}-${taskName}-todo`, 'flex-grid');
             let checkBtn = render.container(`task-${project}-${taskName}-${todo}-todo-container-button`, `task-${project}-${taskName}-${todo}-todo`, 'col-1', 'button');
-            render.container(`todo-${project}-${taskName}-${todo}-todo-container-description`, `task-${project}-${taskName}-${todo}-todo`, 'col-11').textContent = JSON.parse(todo)[0]
-        return checkBtn ;
+            render.container(`todo-${project}-${taskName}-${todo}-todo-container-description`, `task-${project}-${taskName}-${todo}-todo`, 'col-10').textContent = JSON.parse(todo)[0]
+            let deleteBtn = render.container(`task-${project}-${taskName}-${todo}-todo-container-button-delete`, `task-${project}-${taskName}-${todo}-todo`, 'col-1', 'button');
+        return {
+            checkBtn,
+            deleteBtn
+        }
     };
 
     const newProjectBtn = () => {

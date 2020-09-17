@@ -16,6 +16,21 @@ const todoTabController = () => {
         }
     };
 
+    const displayNewProjectForm = () => {
+        if (! document.getElementById('project-form')) {
+            forms.newProjectForm().addEventListener('click', () => {
+                let formVal = document.getElementById('project-name').value;
+                if  (userData.validateProjectInput(formVal)) {
+                        storageHelpers.createNewProject(formVal);
+                        document.getElementById('project-form').remove();
+                        displayTabContent();
+                }
+            });
+        } else {
+            alert('Form Already Displayed');
+        }
+    }
+
     const completeTodo = (key, taskName, todoDescription) => {
         storageHelpers.changeTodoState(key, taskName, todoDescription);
         displayTabContent();
@@ -37,6 +52,11 @@ const todoTabController = () => {
         return userData.createTaskObj(name, content, null, null);
     };
 
+    const deleteTodo = (key, taskName, todoDescription) => {
+        storageHelpers.removeTodoFromTask(key, taskName, todoDescription);
+        displayTabContent();
+    }
+
     const displayTabContent = () => {
         Object.keys(localStorage).forEach((key) => {
             if (document.getElementById(`project-${userData.convertToValidId(key)}`)) {
@@ -47,61 +67,49 @@ const todoTabController = () => {
             })
             JSON.parse(localStorage.getItem(key)).forEach((item) => {
                 let obj = JSON.parse(item);
-                let taskBtns = todoTab.renderTask(key, obj);
-                taskBtns.completeBtn.addEventListener('click', () => { completeTask(key, item) });
-                taskBtns.todoBtn.addEventListener('click', () => {
-                    let submitBtn = forms.newTodoForm();
-                    submitBtn.addEventListener('click', () => {
-                        let val = document.getElementById('todo-form-input').value;
-                        if (userData.validateTodoInput(val)) {
-                            storageHelpers.addNewTodoToTask(key, obj, val);
-                        } else {
-                            console.error('Invalid Input')
-                        }
+                if (! obj.status) {
+                    let taskBtns = todoTab.renderTask(key, obj);
+                    taskBtns.completeBtn.addEventListener('click', () => { completeTask(key, obj.name) });
+                    taskBtns.todoBtn.addEventListener('click', () => {
+                        let submitBtn = forms.newTodoForm();
+                        submitBtn.addEventListener('click', () => {
+                            let val = document.getElementById('todo-form-input').value;
+                            if (userData.validateTodoInput(val)) {
+                                storageHelpers.addNewTodoToTask(key, obj, val);
+                            } else {
+                                console.error('Invalid Input')
+                            }
+                        });
+                    })
+                    if (obj.todos.length > 0) {
+                        obj.todos.forEach((todo) => {
+                            if (! storageHelpers.checkIfTodoIsCompleted(key, JSON.parse(item).name, JSON.parse(todo)[0])) {
+                                let checkBtn = todoTab.renderTodo(key, obj.name, todo);
+                                checkBtn.checkBtn.addEventListener('click', () => completeTodo(key, obj.name, JSON.parse(todo)[0]));
+                                checkBtn.deleteBtn.addEventListener('click', () => deleteTodo(key, obj.name, JSON.parse(todo)[0]));
+                            }
+                        });
+                    };
+                    taskBtns.deleteBtn.addEventListener('click', () => {
+                        storageHelpers.removeTaskFromProject(key, item);
+                        displayTabContent();
                     });
-                })
-                if (obj.todos.length > 0) {
-                    obj.todos.forEach((todo) => {
-                        if (! storageHelpers.checkIfTodoIsCompleted(key, JSON.parse(item).name, JSON.parse(todo)[0])) {
-                            let checkBtn = todoTab.renderTodo(key, obj.name, todo);
-                            checkBtn.addEventListener('click', () => completeTodo(key, obj.name, JSON.parse(todo)[0]));
-                        }
+                    taskBtns.editBtn.addEventListener('click', () => {
+                        let editTaskForm = forms.newTaskForm(key);
+                        placeholdData(JSON.parse(item));
+                        editTaskForm.addEventListener('click', () => {
+                            if (userData.validateTaskInput(obj)) {
+                                let obj = gatherDataFromForm();
+                                storageHelpers.removeTaskFromProject(key, item);
+                                storageHelpers.addNewTaskToProject(key, obj);
+                                displayTabContent();
+                            };
+                        });
                     });
-                };
-                taskBtns.deleteBtn.addEventListener('click', () => {
-                    storageHelpers.removeTaskFromProject(key, item);
-                    displayTabContent();
-                });
-                taskBtns.editBtn.addEventListener('click', () => {
-                    let editTaskForm = forms.newTaskForm(key);
-                    placeholdData(JSON.parse(item));
-                    editTaskForm.addEventListener('click', () => {
-                        if (userData.validateTaskInput(obj)) {
-                            let obj = gatherDataFromForm();
-                            storageHelpers.removeTaskFromProject(key, item);
-                            storageHelpers.addNewTaskToProject(key, obj);
-                            displayTabContent();
-                        };
-                    });
-                });
+                }
             });
         });
     };
-
-    const displayNewProjectForm = () => {
-        if (! document.getElementById('project-form')) {
-            forms.newProjectForm().addEventListener('click', () => {
-                let formVal = document.getElementById('project-name').value;
-                if  (userData.validateProjectInput(formVal)) {
-                        storageHelpers.createNewProject(formVal);
-                        document.getElementById('project-form').remove();
-                        displayTabContent();
-                }
-            });
-        } else {
-            alert('Form Already Displayed');
-        }
-    }
 
     todoTab.newProjectBtn().addEventListener('click', displayNewProjectForm);
     displayTabContent();
