@@ -95,6 +95,11 @@ const todoTabController = () => {
                             }
                         });
                     })
+                    if (checkIfDateIsLate(key, obj.name)) {
+                        taskBtns.dateInfo.classList.add('date-field-warning');
+                    } else {
+
+                    }
                     if (obj.todos.length > 0) {
                         obj.todos.forEach((todo) => {
                             if (! storageHelpers.checkIfTodoIsCompleted(key, JSON.parse(item).name, JSON.parse(todo)[0])) {

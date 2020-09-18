@@ -110,7 +110,8 @@ const storageHelpers = (() => {
         getTodoIndex,
         checkIfTodoIsCompleted,
         changeTodoState,
-        changeTaskState
+        changeTaskState,
+        retrieveTaskData
     }
 })();
 

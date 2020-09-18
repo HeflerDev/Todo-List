@@ -4,27 +4,64 @@
   height: 100vh;
   background-color: #bebebe; }
 
+button {
+  transition: 0.1s;
+  border-radius: 0.2rem; }
+  button:hover {
+    transition: 0.2s;
+    transform: scale(1.05); }
+
+.no-margin {
+  margin: 0;
+  background-color: none;
+  border: solid black 0;
+  border-left: solid black 1px;
+  border-radius: 0 10px 10px 0; }
+
+.project-container {
+  border-radius: 0 10px 10px 0;
+  background-color: #bebebe; }
+
 .task-container {
-  border: solid #3d3d3d 5px;
-  border-radius: 5px;
-  padding: 1rem; }
+  border: solid #3d3d3d 1px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 0.5rem; }
 
 .task-field {
-  border: solid #bebebe 2px; }
+  border: solid #c8c8c8 1px;
+  margin: auto;
+  padding: 10px;
+  background-color: #f5f5ff;
+  border-radius: 0.2rem; }
 
 .btn-primary {
-  border: solid #3d3d3d 5px;
+  border: solid #3d3d3d 1px;
   background-color: #bebebe; }
 
+.complete-btn {
+  border-radius: 0;
+  border: solid #3d3d3d 1px;
+  background-color: white; }
+
 .btn-secondary {
-  border: solid #bebebe 3px;
-  background-color: #bebebe; }
+  border: solid #bebebe 2px;
+  background-color: gainsboro;
+  border-radius: 0.5rem; }
 
 .btn-danger {
   border: none;
   border-radius: 5px;
   background-color: #f02010;
   color: whitesmoke; }
+
+.date-field-warning {
+  background-color: red;
+  color: white;
+  border: none; }
+
+.margin-1 {
+  margin: 0.5rem; }
 
 footer section {
   height: 200px; }

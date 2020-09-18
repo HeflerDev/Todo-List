@@ -3,23 +3,52 @@
 
 $color-secondary: rgb(190,190,190);
 $color-primary: rgb(61,61,61);
-$border-primary: 5px;
-$border-secondary: 3px;
+$border-primary: 1px;
+$border-secondary: 2px;
 $color-danger: rgb(240,32,16) ;
+$color-soft-button: rgb(220,220,220);
+$soft-white: rgb(245, 245, 255);
 
 #left-section {
     height: 100vh;
     background-color: $color-secondary;
 }
 
+button{
+    transition: 0.1s;
+    border-radius: 0.2rem;
+     &:hover{
+        transition: 0.2s;
+        transform:scale(1.05);
+    }
+}
+
+.no-margin {
+    margin: 0;
+    background-color:none;
+    border: solid black 0;
+    border-left: solid black 1px;
+    border-radius: 0 10px 10px 0;
+}
+
+.project-container {
+    border-radius: 0 10px 10px 0;
+    background-color: $color-secondary;
+}
+
 .task-container {
     border: solid $color-primary $border-primary;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     padding: 1rem;
+    margin: 0.5rem;
 }
 
 .task-field {
-    border: solid $color-secondary 2px;
+    border: solid rgb(200,200,200) 1px;
+    margin:auto;
+    padding: 10px;
+    background-color: $soft-white;
+    border-radius: 0.2rem;
 }
 
 .btn-primary {
@@ -27,9 +56,16 @@ $color-danger: rgb(240,32,16) ;
     background-color: $color-secondary;
 }
 
+.complete-btn {
+    border-radius: 0;
+    border: solid $color-primary 1px;
+    background-color: rgba(255,255,255,1.0);
+}
+
 .btn-secondary {
     border: solid $color-secondary $border-secondary;
-    background-color: $color-secondary;
+    background-color: $color-soft-button;
+    border-radius: 0.5rem;
 }
 
 .btn-danger {
@@ -37,6 +73,16 @@ $color-danger: rgb(240,32,16) ;
     border-radius: 5px;
     background-color: $color-danger;
     color: whitesmoke;
+}
+
+.date-field-warning {
+   background-color: red;
+   color: white;
+   border: none;
+}
+
+.margin-1 {
+    margin: 0.5rem;
 }
 
 footer section {
