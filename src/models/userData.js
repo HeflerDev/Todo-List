@@ -20,14 +20,18 @@ const userData = (() => {
     };
 
     const validateTaskInput = (data) => {
-        if (/^[a-zA-Z]/.test(data.name)) {
-            if (data.content.length > 0) {
-                return true;
-            } else {
-                alert('Invalid Input: Task content must exist');
-            }
+        let formErrors = [];
+
+        console.log(formErrors);
+
+        if (! /^[a-zA-Z]/.test(data.name)) { formErrors.push('Task name must start with an letter') };
+        if (! data.content) { formErrors.push('Task content must exist') };
+        if (! Date.parse(data.date)) { formErrors.push('Invalid Date input') };
+
+        if (formErrors.length > 0) {
+            return formErrors;
         } else {
-            alert('Invalid Input: Task name should start with a letter');
+            return true;
         }
     };
 

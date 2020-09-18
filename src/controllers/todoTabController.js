@@ -11,13 +11,14 @@ const todoTabController = () => {
         let difficulty = document.getElementById('difficulty-select').value;
         let expiringDate = document.getElementById('date-input').value;
         let obj = userData.createTaskObj(name, content, difficulty, expiringDate);
-        // console.log(Date.parse(obj.date));
-        // console.log(Date.now());
-        if (userData.validateTaskInput(obj)) {
+        let validate = userData.validateTaskInput(obj);
+
+        if (validate === true) {
             storageHelpers.addNewTaskToProject(key, obj);
         } else {
             console.error('Data Submission returned FALSE');
         }
+
     };
 
     const displayNewProjectForm = () => {
@@ -60,6 +61,15 @@ const todoTabController = () => {
         storageHelpers.removeTodoFromTask(key, taskName, todoDescription);
         displayTabContent();
     }
+
+    const checkIfDateIsLate = (key, taskName) => {
+        let task = storageHelpers.retrieveTaskData(key, taskName);
+        if (Date.parse(task.date) < Date.now()) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     const displayTabContent = () => {
         Object.keys(localStorage).forEach((key) => {
