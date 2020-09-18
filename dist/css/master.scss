@@ -1,15 +1,42 @@
 @import  './reset.css' ;
 @import './framework.css' ;
 
-* {
-    border: solid red 1px;
-}
-
 $color-secondary: rgb(190,190,190);
+$color-primary: rgb(61,61,61);
+$border-primary: 5px;
+$border-secondary: 3px;
+$color-danger: rgb(240,32,16) ;
 
 #left-section {
     height: 100vh;
     background-color: $color-secondary;
+}
+
+.task-container {
+    border: solid $color-primary $border-primary;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.task-field {
+    border: solid $color-secondary 2px;
+}
+
+.btn-primary {
+    border: solid $color-primary $border-primary;
+    background-color: $color-secondary;
+}
+
+.btn-secondary {
+    border: solid $color-secondary $border-secondary;
+    background-color: $color-secondary;
+}
+
+.btn-danger {
+    border: none;
+    border-radius: 5px;
+    background-color: $color-danger;
+    color: whitesmoke;
 }
 
 footer section {

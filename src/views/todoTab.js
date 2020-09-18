@@ -16,25 +16,23 @@ const todoTab = (() => {
     }
 
     const renderTask = (project, obj) => {
-        render.container(`task-${project}-${obj.name}`, `project-${project}`);
+        render.container(`task-${project}-${obj.name}`, `project-${project}`, ['task-container']);
         render.container(`task-${project}-${obj.name}-name-container`, `task-${project}-${obj.name}`, ['flex-grid'])
-            let completeTaskBtn = render.container(`task-${project}-${obj.name}-complete-task-btn`, `task-${project}-${obj.name}-name-container`, 'col-1', 'button');
+            let completeTaskBtn = render.container(`task-${project}-${obj.name}-complete-task-btn`, `task-${project}-${obj.name}-name-container`, ['col-1', 'btn-primary'], 'button');
             completeTaskBtn.textContent = 'Complete Task';
-            render.container(`task-${project}-${obj.name}-name`, `task-${project}-${obj.name}-name-container`, ['col-11']).textContent = obj.name;
+            render.container(`task-${project}-${obj.name}-name`, `task-${project}-${obj.name}-name-container`, ['col-11', 'task-field']).textContent = obj.name;
         render.container(`task-${project}-${obj.name}-content-container`, `task-${project}-${obj.name}`, ['flex-grid']);
-            render.container(`task-${project}-${obj.name}-content`, `task-${project}-${obj.name}-content-container`, ['col-10']).textContent = obj.content;
-            render.container(`task-${project}-${obj.name}-content-container-buttons`, `task-${project}-${obj.name}-content-container`, 'col-2');
-                let editBtn = render.container(`task-${project}-${obj.name}-edit-button`, `task-${project}-${obj.name}-content-container-buttons`, null, 'button');
+            render.container(`task-${project}-${obj.name}-content`, `task-${project}-${obj.name}-content-container`, ['col-10', 'task-field']).textContent = obj.content;
+            render.container(`task-${project}-${obj.name}-content-container-buttons`, `task-${project}-${obj.name}-content-container`, ['col-2', 'flex-grid']);
+                let editBtn = render.container(`task-${project}-${obj.name}-edit-button`, `task-${project}-${obj.name}-content-container-buttons`, ['btn-secondary', 'col-12'], 'button');
                 editBtn.textContent = 'Edit Task';
-                let deleteBtn = render.container(`task-${project}-${obj.name}-delete-button`, `task-${project}-${obj.name}-content-container-buttons`, null, 'button');
+                let deleteBtn = render.container(`task-${project}-${obj.name}-delete-button`, `task-${project}-${obj.name}-content-container-buttons`, ['btn-danger', 'col-12'], 'button');
                 deleteBtn.textContent = 'Delete Task';
         render.container(`task-${project}-${obj.name}-details-container`, `task-${project}-${obj.name}`, ['flex-grid']);
-            render.container(`task-${project}-${obj.name}-details-difficulty`, `task-${project}-${obj.name}-details-container`, 'col-6').textContent = obj.difficulty;
-            render.container(`task-${project}-${obj.name}-details-date`, `task-${project}-${obj.name}-details-container`, 'col-6').textContent = obj.date;
-
-
+            render.container(`task-${project}-${obj.name}-details-difficulty`, `task-${project}-${obj.name}-details-container`, ['col-6', 'task-field']).textContent = obj.difficulty;
+            render.container(`task-${project}-${obj.name}-details-date`, `task-${project}-${obj.name}-details-container`, ['col-6', 'task-field']).textContent = obj.date;
         render.container(`task-${project}-${obj.name}-todo`, `task-${project}-${obj.name}`)
-        let todoBtn = render.container(`task-${project}-${obj.name}-todo-button`, `task-${project}-${obj.name}`, null, 'button');
+        let todoBtn = render.container(`task-${project}-${obj.name}-todo-button`, `task-${project}-${obj.name}`, ['btn-secondary', 'col-12'], 'button');
         todoBtn.textContent = 'Add new Todo';
         return {
             'todoBtn':todoBtn,
