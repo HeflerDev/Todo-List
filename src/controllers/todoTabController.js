@@ -2,9 +2,14 @@ import forms from '../views/forms';
 import todoTab from '../views/todoTab';
 import userData from '../models/userData';
 import storageHelpers from '../models/storageHelpers';
-
+/*
+ * As a controller, this is responsible for communicating with the view
+ * and databse in order to gather and store data
+ */
 const todoTabController = () => {
-
+    /*
+     * Some helpers to work in the tab displaying
+     */
     const submitTaskForm = (key) => {
         let name = document.getElementById('name-input').value;
         let content = document.getElementById('content-input').value;
@@ -29,6 +34,7 @@ const todoTabController = () => {
                         storageHelpers.createNewProject(formVal);
                         document.getElementById('project-form').remove();
                         displayTabContent();
+                        location.reload();
                 }
             });
         } else {
@@ -71,6 +77,11 @@ const todoTabController = () => {
         }
     };
 
+    /*
+     * This function display the entire todo tab, taking the data from the view
+     * and sending to the model
+     */
+
     const displayTabContent = () => {
         Object.keys(localStorage).forEach((key) => {
             if (document.getElementById(`project-${userData.convertToValidId(key)}`)) {
@@ -95,10 +106,13 @@ const todoTabController = () => {
                             }
                         });
                     })
-                    if (checkIfDateIsLate(key, obj.name)) {
-                        taskBtns.dateInfo.classList.add('date-field-warning');
+                    if (checkIfDateIsLate(key, obj.name)) { taskBtns.dateInfo.classList.add('date-field-warning') }
+                    if (taskBtns.difficultyInfo.textContent == 'Easy') {
+                        taskBtns.difficultyInfo.classList.add('easy-container');
+                    } else if (taskBtns.difficultyInfo.textContent == 'Medium') {
+                        taskBtns.difficultyInfo.classList.add('medium-container');
                     } else {
-
+                        taskBtns.difficultyInfo.classList.add('hard-container');
                     }
                     if (obj.todos.length > 0) {
                         obj.todos.forEach((todo) => {
@@ -130,9 +144,17 @@ const todoTabController = () => {
         });
     };
 
+    /*
+     * Basic flow that will execute the function as soon as it is
+     * called
+     */
+
     todoTab.newProjectBtn().addEventListener('click', displayNewProjectForm);
     displayTabContent();
-
+    console.log(storageHelpers.checkForProjectExistence());
+    if (! storageHelpers.checkForProjectExistence()) {
+       todoTab.noProjectWarning();
+    }
     return { displayTabContent, displayNewProjectForm }
 };
 

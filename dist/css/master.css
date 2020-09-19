@@ -40,9 +40,41 @@ button {
   background-color: #bebebe; }
 
 .complete-btn {
+  transition: 0.2s;
   border-radius: 0;
   border: solid #3d3d3d 1px;
   background-color: white; }
+  .complete-btn:hover {
+    transition: 0.2s;
+    background-image: url("https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center; }
+
+.no-project-warning {
+  text-align: center;
+  margin: 3rem 0.2rem;
+  color: lightgray; }
+
+.new-project-btn {
+  border: solid gray 1px;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  margin: 4px auto;
+  display: flex; }
+
+.easy-container {
+  border: solid #7cc87c 1px;
+  background-color: green; }
+
+.medium-container {
+  border: solid #64dcdc 1px;
+  background-color: yellow; }
+
+.hard-container {
+  border: solid darkred 1px;
+  background-color: red; }
 
 .btn-secondary {
   border: solid #bebebe 2px;

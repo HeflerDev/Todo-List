@@ -19,7 +19,6 @@ const todoTab = (() => {
         render.container(`task-${project}-${obj.name}`, `project-${project}`, ['task-container']);
         render.container(`task-${project}-${obj.name}-name-container`, `task-${project}-${obj.name}`, ['flex-grid'])
             let completeTaskBtn = render.container(`task-${project}-${obj.name}-complete-task-btn`, `task-${project}-${obj.name}-name-container`, ['col-1', 'complete-btn'], 'button');
-            completeTaskBtn.textContent = 'Complete Task';
             render.container(`task-${project}-${obj.name}-name`, `task-${project}-${obj.name}-name-container`, ['col-10', 'task-field', 'minibox', 'column']);
                 render.container(`task-${project}-${obj.name}-name-text`, `task-${project}-${obj.name}-name`).textContent = obj.name;
         render.container(`task-${project}-${obj.name}-content-container`, `task-${project}-${obj.name}`, ['flex-grid']);
@@ -30,9 +29,10 @@ const todoTab = (() => {
                 let deleteBtn = render.container(`task-${project}-${obj.name}-delete-button`, `task-${project}-${obj.name}-content-container-buttons`, ['btn-danger', 'col-12'], 'button');
                 deleteBtn.textContent = 'Delete Task';
         render.container(`task-${project}-${obj.name}-details-container`, `task-${project}-${obj.name}`, ['flex-grid']);
-            render.container(`task-${project}-${obj.name}-details-difficulty`, `task-${project}-${obj.name}-details-container`, ['col-6', 'task-field']).textContent = obj.difficulty;
+            let difficultyInfo = render.container(`task-${project}-${obj.name}-details-difficulty`, `task-${project}-${obj.name}-details-container`, ['col-6', 'task-field']);
+            difficultyInfo.textContent = obj.difficulty;
             let dateInfo = render.container(`task-${project}-${obj.name}-details-date`, `task-${project}-${obj.name}-details-container`, ['col-6', 'task-field']);
-            dateInfo.textContent = obj.date;
+                dateInfo.textContent = obj.date;
         render.container(`task-${project}-${obj.name}-todo`, `task-${project}-${obj.name}`)
         let todoBtn = render.container(`task-${project}-${obj.name}-todo-button`, `task-${project}-${obj.name}`, ['btn-secondary', 'col-12', 'margin-1' ], 'button');
         todoBtn.textContent = 'Add new Todo';
@@ -41,7 +41,8 @@ const todoTab = (() => {
             'editBtn':editBtn,
             'deleteBtn':deleteBtn,
             'completeBtn':completeTaskBtn,
-            'dateInfo':dateInfo
+            'dateInfo':dateInfo,
+            'difficultyInfo':difficultyInfo
         }
     };
 
@@ -58,12 +59,18 @@ const todoTab = (() => {
     };
 
     const newProjectBtn = () => {
-        let btn = render.container('new-project-btn', 'content-section', ['button'], 'button');
-        btn.textContent = 'New Project' ;
+        let btn = render.container('new-project-btn', 'content-section', ['new-project-btn'], 'button');
+        btn.textContent = '+' ;
         return(btn);
     };
 
-    return { renderProject, renderTask, newProjectBtn, renderTodo }
+    const noProjectWarning = () => {
+        let warning = render.container('no-project-warning', 'content-section', ['no-project-warning']);
+        warning.textContent = 'Nothing to display here. Press "+" to create a new project';
+        return warning;
+    }
+
+    return { renderProject, renderTask, newProjectBtn, renderTodo, noProjectWarning }
 })();
 
 export default todoTab ;

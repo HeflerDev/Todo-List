@@ -4,6 +4,13 @@ const storageHelpers = (() => {
         localStorage.setItem(key, JSON.stringify([]));
     }
 
+    const checkForProjectExistence = () => {
+        if (localStorage.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
     const findDataIndexByKey = (key, value) => {
         let item = localStorage.getItem(key);
         let result = -1;
@@ -50,7 +57,7 @@ const storageHelpers = (() => {
 
     const removeTodoFromTask = (key, taskName, todoDescription) => {
         let task = retrieveTaskData(key, taskName);
-        task.todos.splice(getTodoIndex(key, taskName, todoDescription));
+        task.todos.splice(getTodoIndex(key, taskName, todoDescription), 1);
         removeTaskFromProject(key, taskName);
         addNewTaskToProject(key, task);
     };
@@ -111,6 +118,7 @@ const storageHelpers = (() => {
         checkIfTodoIsCompleted,
         changeTodoState,
         changeTaskState,
+        checkForProjectExistence,
         retrieveTaskData
     }
 })();
