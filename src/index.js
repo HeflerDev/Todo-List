@@ -5,4 +5,5 @@ import forms from './views/forms';
 
 const main = (() => {
     todoTabController();
+    forms.newTaskForm('Hello');
 })();

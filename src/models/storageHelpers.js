@@ -107,6 +107,24 @@ const storageHelpers = (() => {
         addNewTaskToProject(key, task);
     };
 
+    const gatherStorageData = () => {
+        let completedTasks = 0;
+        let uncompletedTasks = 0;
+        Object.keys(localStorage).forEach((key) => {
+            JSON.parse(localStorage.getItem(key)).forEach((task) => {
+                if (JSON.parse(task).status === true) {
+                    completedTasks += 1;
+                } else {
+                    uncompletedTasks += 1;
+                }
+            });
+        });
+        return {
+            completed: completedTasks,
+            uncomplete: uncompleteTasks
+        }
+    }
+
     return {
         addNewTaskToProject,
         addNewTodoToTask,
@@ -119,7 +137,8 @@ const storageHelpers = (() => {
         changeTodoState,
         changeTaskState,
         checkForProjectExistence,
-        retrieveTaskData
+        retrieveTaskData,
+        gatherStorageData
     }
 })();
 

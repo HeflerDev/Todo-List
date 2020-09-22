@@ -5,7 +5,6 @@ const todoTab = (() => {
 
     const renderProject = (elementId) => {
         render.container(`project-${elementId}`, 'content-section', ['box']);
-
         render.container(`project-${elementId}-container`, `project-${elementId}`, ['flex-grid', 'project-container']);
         render.container(`project-${elementId}-name`, `project-${elementId}-container`, ['col-12', 'col-m-10']);
         let text = render.container(elementId, `project-${elementId}-name`, ['minibox', 'center'], 'h2');
@@ -59,7 +58,8 @@ const todoTab = (() => {
     };
 
     const newProjectBtn = () => {
-        let btn = render.container('new-project-btn', 'content-section', ['new-project-btn'], 'button');
+        render.container('new-project-btn-container', 'content-section', ['flex-grid', 'center']);
+        let btn = render.container('new-project-btn', 'new-project-btn-container', ['new-project-btn'], 'button');
         btn.textContent = '+' ;
         return(btn);
     };

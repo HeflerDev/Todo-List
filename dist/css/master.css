@@ -4,6 +4,25 @@
   height: 100vh;
   background-color: #bebebe; }
 
+#project-form-container {
+  position: absolute;
+  background: #bebebe;
+  border: solid #3d3d3d 2px;
+  max-width: 35%;
+  min-width: 30%; }
+  #project-form-container .btn-primary {
+    background-color: gainsboro; }
+
+#task-form-container {
+  position: absolute;
+  background: #bebebe;
+  border: solid #3d3d3d 2px;
+  max-width: 25%;
+  min-width: 20%;
+  border-radius: 10px; }
+  #task-form-container .btn-primary {
+    background-color: gainsboro; }
+
 button {
   transition: 0.1s;
   border-radius: 0.2rem; }
