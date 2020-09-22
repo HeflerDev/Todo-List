@@ -49,7 +49,7 @@ const todoTabController = () => {
 
     const completeTask = (key, taskName) => {
         storageHelpers.changeTaskState(key, taskName);
-        displayTabContent();
+        location.reload();
     };
 
     const placeholdData = (obj) => {
@@ -68,14 +68,6 @@ const todoTabController = () => {
         displayTabContent();
     }
 
-    const checkIfDateIsLate = (key, taskName) => {
-        let task = storageHelpers.retrieveTaskData(key, taskName);
-        if (Date.parse(task.date) < Date.now()) {
-            return true;
-        } else {
-            return false;
-        }
-    };
 
     /*
      * This function display the entire todo tab, taking the data from the view
@@ -106,7 +98,7 @@ const todoTabController = () => {
                             }
                         });
                     })
-                    if (checkIfDateIsLate(key, obj.name)) { taskBtns.dateInfo.classList.add('date-field-warning') }
+                    if (storageHelpers.checkIfDateIsLate(key, obj.name)) { taskBtns.dateInfo.classList.add('date-field-warning') }
                     if (taskBtns.difficultyInfo.textContent == 'Easy') {
                         taskBtns.difficultyInfo.classList.add('easy-container');
                     } else if (taskBtns.difficultyInfo.textContent == 'Medium') {

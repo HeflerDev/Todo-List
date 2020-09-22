@@ -107,21 +107,42 @@ const storageHelpers = (() => {
         addNewTaskToProject(key, task);
     };
 
+    const checkIfDateIsLate = (key, taskName) => {
+        let task = retrieveTaskData(key, taskName);
+        if (Date.parse(task.date) < Date.now()) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     const gatherStorageData = () => {
         let completedTasks = 0;
         let uncompletedTasks = 0;
+        let onTimeTasks = 0;
+        let lateTasks = 0;
         Object.keys(localStorage).forEach((key) => {
             JSON.parse(localStorage.getItem(key)).forEach((task) => {
-                if (JSON.parse(task).status === true) {
+                let taskObj = JSON.parse(task);
+                if (taskObj.status === true) {
                     completedTasks += 1;
                 } else {
                     uncompletedTasks += 1;
                 }
+                if (checkIfDateIsLate(key, taskObj.name)) {
+                    if (taskObj.status === false) {
+                        lateTasks += 1;
+                    }
+                } else {
+                    onTimeTasks += 1;
+                }
             });
         });
         return {
-            completed: completedTasks,
-            uncomplete: uncompleteTasks
+            completed: completedTasks.toString(),
+            uncompleted: uncompletedTasks.toString(),
+            onTime: onTimeTasks.toString(),
+            lateTime:  lateTasks.toString()
         }
     }
 
@@ -138,7 +159,8 @@ const storageHelpers = (() => {
         changeTaskState,
         checkForProjectExistence,
         retrieveTaskData,
-        gatherStorageData
+        gatherStorageData,
+        checkIfDateIsLate
     }
 })();
 
