@@ -70,6 +70,14 @@ button {
     background-repeat: no-repeat;
     background-position: center; }
 
+.completed-btn {
+  border-radius: 0;
+  border: solid #3d3d3d 1px;
+  background-image: url("https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center; }
+
 .no-project-warning {
   text-align: center;
   margin: 3rem 0.2rem;

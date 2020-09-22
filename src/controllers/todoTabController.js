@@ -6,7 +6,7 @@ import storageHelpers from '../models/storageHelpers';
  * As a controller, this is responsible for communicating with the view
  * and databse in order to gather and store data
  */
-const todoTabController = () => {
+const todoTabController = (() => {
     /*
      * Some helpers to work in the tab displaying
      */
@@ -136,6 +136,34 @@ const todoTabController = () => {
         });
     };
 
+    const displayTabCompletedContent = () => {
+
+        Object.keys(localStorage).forEach((key) => {
+            if (document.getElementById(`project-${userData.convertToValidId(key)}`)) {
+                document.getElementById(`project-${userData.convertToValidId(key)}`).remove();
+            }
+            todoTab.renderProject(key);
+            JSON.parse(localStorage.getItem(key)).forEach((task) => {
+                let obj = JSON.parse(task);
+                if (obj.status) {
+                    let btn = todoTab.renderTask(key, obj);
+                    btn.completeBtn.classList.remove('complete-btn');
+                    btn.completeBtn.classList.add('completed-btn');
+                    btn.completeBtn.addEventListener('click', () => {
+                        storageHelpers.changeTaskState(key, obj.name);
+                        location.reload();
+                    });
+                    btn.todoBtn.disabled = true;
+                    btn.editBtn.disabled = true;
+                    btn.deleteBtn.addEventListener('click', () => {
+                        storageHelpers.removeTaskFromProject(key, obj);
+                        location.reload();
+                    });
+                }
+            });
+        });
+    };
+
     /*
      * Basic flow that will execute the function as soon as it is
      * called
@@ -147,7 +175,7 @@ const todoTabController = () => {
     if (! storageHelpers.checkForProjectExistence()) {
        todoTab.noProjectWarning();
     }
-    return { displayTabContent, displayNewProjectForm }
-};
+    return { displayTabContent, displayTabCompletedContent, displayNewProjectForm }
+})();
 
 export default todoTabController ;

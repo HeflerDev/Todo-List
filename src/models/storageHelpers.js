@@ -87,7 +87,11 @@ const storageHelpers = (() => {
         console.log(key, taskName)
         let project = JSON.parse(localStorage.getItem(key));
         let task = JSON.parse(project[findDataIndexByKey(key, taskName)]);
-        task.status = true;
+        if (task.status) {
+            task.status = false;
+        } else {
+            task.status = true;
+        }
         removeTaskFromProject(key, taskName);
         addNewTaskToProject(key, task);
     };
