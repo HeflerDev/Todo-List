@@ -38,7 +38,6 @@ $soft-white: rgb(245, 245, 255);
 }
 
 button{
-    transition: 0.1s;
     border-radius: 0.2rem;
      &:hover{
         transition: 0.2s;
@@ -79,6 +78,11 @@ button{
     background-color: $color-secondary;
 }
 
+.todo-container {
+    background-color: rgb(240, 240, 240);
+    border-bottom: solid $color-secondary 1px;
+}
+
 .complete-btn {
     transition: 0.2s;
     border-radius: 0;
@@ -93,6 +97,24 @@ button{
     }
 }
 
+.uncomplete-btn {
+    border-radius: 0;
+    border: solid $color-primary 1px;
+    background-color: rgba(255,255,255,1.0);
+    background-image: url('https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:hover {
+        background-image: none;
+    }
+}
+
+.completed-todo {
+    color: gray;
+    text-decoration: line-through;
+}
+
 .completed-btn {
     border-radius: 0;
     border: solid $color-primary 1px;
@@ -101,6 +123,14 @@ button{
     background-repeat: no-repeat;
     background-position: center;
 }
+
+#todo-form-container {
+   background-color: $color-secondary;
+   border: solid $color-primary 5px;
+   border-radius: 2rem;
+   position: absolute;
+   max-width: 35%;
+};
 
 .no-project-warning {
     text-align:center;
