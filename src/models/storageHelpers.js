@@ -17,8 +17,6 @@ const storageHelpers = (() => {
       const obj = JSON.parse(data);
       if (value === obj.name) {
         result = index;
-      } else {
-        console.log('findDataIndexByKey:Error: No matching found');
       }
     });
     return result;
@@ -54,13 +52,6 @@ const storageHelpers = (() => {
     }
   };
 
-  const removeTodoFromTask = (key, taskName, todoDescription) => {
-    const task = retrieveTaskData(key, taskName);
-    task.todos.splice(getTodoIndex(key, taskName, todoDescription), 1);
-    removeTaskFromProject(key, taskName);
-    addNewTaskToProject(key, task);
-  };
-
   const getTodoIndex = (key, taskName, todo) => {
     const taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
     const stg = JSON.parse(localStorage.getItem(key));
@@ -74,6 +65,13 @@ const storageHelpers = (() => {
     return todoIndex;
   };
 
+  const removeTodoFromTask = (key, taskName, todoDescription) => {
+    const task = retrieveTaskData(key, taskName);
+    task.todos.splice(getTodoIndex(key, taskName, todoDescription), 1);
+    removeTaskFromProject(key, taskName);
+    addNewTaskToProject(key, task);
+  };
+
   const checkIfTodoIsCompleted = (key, taskName, todo) => {
     const taskIndex = storageHelpers.findDataIndexByKey(key, taskName);
     const project = JSON.parse(localStorage.getItem(key));
@@ -83,7 +81,6 @@ const storageHelpers = (() => {
   };
 
   const changeTaskState = (key, taskName) => {
-    console.log(key, taskName);
     const project = JSON.parse(localStorage.getItem(key));
     const task = JSON.parse(project[findDataIndexByKey(key, taskName)]);
     if (task.status) {

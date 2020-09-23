@@ -10,7 +10,7 @@ const userData = (() => {
 
   const convertToValidId = (data) => data.replace(/\s/g, '-');
 
-  const convertIdToText = (data) => data.replace(/-+/g, ' ');
+  // const convertIdToText = (data) => data.replace(/-+/g, ' ');
 
   const validateProjectInput = (data) => {
     const validData = /^[a-zA-Z]/g;
@@ -19,8 +19,6 @@ const userData = (() => {
 
   const validateTaskInput = (data) => {
     const formErrors = [];
-
-    console.log(formErrors);
 
     if (!/^[a-zA-Z]/.test(data.name)) { formErrors.push('Task name must start with an letter'); }
     if (!data.content) { formErrors.push('Task content must exist'); }

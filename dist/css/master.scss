@@ -10,6 +10,8 @@ $color-soft-button: rgb(220,220,220);
 $soft-white: rgb(245, 245, 255);
 
 #left-section {
+    position: sticky;
+    top: 0;
     height: 100vh;
     background-color: $color-secondary;
 }
@@ -53,9 +55,13 @@ button{
     border-radius: 0 10px 10px 0;
 }
 
+.whole-project-container {
+    border: solid $color-secondary 1px;
+}
+
 .project-container {
     border-radius: 0 10px 10px 0;
-    background-color: $color-secondary;
+    background-color:$color-secondary;
 }
 
 .task-container {

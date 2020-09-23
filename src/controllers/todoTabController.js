@@ -18,37 +18,15 @@ const todoTabController = (() => {
     const obj = userData.createTaskObj(name, content, difficulty, expiringDate);
     const validate = userData.validateTaskInput(obj);
 
-    if (validate === true) {
-      storageHelpers.addNewTaskToProject(key, obj);
-    } else {
-      console.error('Data Submission returned FALSE');
-    }
-  };
-
-  const displayNewProjectForm = () => {
-    if (!document.getElementById('project-form')) {
-      forms.newProjectForm().addEventListener('click', () => {
-        const formVal = document.getElementById('project-name').value;
-        if (userData.validateProjectInput(formVal)) {
-          storageHelpers.createNewProject(formVal);
-          document.getElementById('project-form').remove();
-          displayTabContent();
-          location.reload();
-        }
-      });
-    } else {
-      alert('Form Already Displayed');
-    }
+    if (validate === true) { storageHelpers.addNewTaskToProject(key, obj); }
   };
 
   const completeTodo = (key, taskName, todoDescription) => {
     storageHelpers.changeTodoState(key, taskName, todoDescription);
-    displayTabContent();
   };
 
   const completeTask = (key, taskName) => {
     storageHelpers.changeTaskState(key, taskName);
-    location.reload();
   };
 
   const placeholdData = (obj) => {
@@ -64,7 +42,6 @@ const todoTabController = (() => {
 
   const deleteTodo = (key, taskName, todoDescription) => {
     storageHelpers.removeTodoFromTask(key, taskName, todoDescription);
-    displayTabContent();
   };
 
   /*
@@ -87,7 +64,10 @@ const todoTabController = (() => {
         const obj = JSON.parse(item);
         if (!obj.status) {
           const taskBtns = todoTab.renderTask(key, obj);
-          taskBtns.completeBtn.addEventListener('click', () => { completeTask(key, obj.name); });
+          taskBtns.completeBtn.addEventListener('click', () => {
+              completeTask(key, obj.name);
+              displayTabContent();
+          });
           taskBtns.todoBtn.addEventListener('click', () => {
             const submitBtn = forms.newTodoForm(key, obj.name);
             submitBtn.addEventListener('click', () => {
@@ -111,13 +91,20 @@ const todoTabController = (() => {
             obj.todos.forEach((todo) => {
               if (!storageHelpers.checkIfTodoIsCompleted(key, JSON.parse(item).name, JSON.parse(todo)[0])) {
                 const checkBtn = todoTab.renderTodo(key, obj.name, todo);
-                checkBtn.checkBtn.addEventListener('click', () => completeTodo(key, obj.name, JSON.parse(todo)[0]));
-                checkBtn.deleteBtn.addEventListener('click', () => deleteTodo(key, obj.name, JSON.parse(todo)[0]));
+                const [description] = JSON.parse(todo);
+                checkBtn.checkBtn.addEventListener('click', () => {
+                    completeTodo(key, obj.name, description);
+                    displayTabContent();
+                });
+                checkBtn.deleteBtn.addEventListener('click', () => {
+                    deleteTodo(key, obj.name, description);
+                    displayTabContent();
+                });
               } else {
                 const checkBtn = todoTab.renderCheckedTodo(key, obj.name, todo);
                 checkBtn.checkBtn.addEventListener('click', () => {
-                  storageHelpers.changeTodoState(key, obj.name, JSON.parse(todo)[0]);
-                  location.reload();
+                    storageHelpers.changeTodoState(key, obj.name, JSON.parse(todo)[0]);
+                    displayTabContent();
                 });
                 checkBtn.checkBtn.classList.remove('complete-btn');
                 checkBtn.checkBtn.classList.add('uncomplete-btn');
@@ -147,7 +134,9 @@ const todoTabController = (() => {
   };
 
   const displayTabCompletedContent = () => {
-    document.getElementById('new-project-btn').remove();
+      if (document.getElementById('new-project-btn')) {
+        document.getElementById('new-project-btn').remove();
+      }
     Object.keys(localStorage).forEach((key) => {
       if (document.getElementById(`project-${userData.convertToValidId(key)}`)) {
         document.getElementById(`project-${userData.convertToValidId(key)}`).remove();
@@ -161,17 +150,32 @@ const todoTabController = (() => {
           btn.completeBtn.classList.add('completed-btn');
           btn.completeBtn.addEventListener('click', () => {
             storageHelpers.changeTaskState(key, obj.name);
-            location.reload();
+            displayTabCompletedContent();
           });
           btn.todoBtn.disabled = true;
           btn.editBtn.disabled = true;
           btn.deleteBtn.addEventListener('click', () => {
             storageHelpers.removeTaskFromProject(key, obj);
-            location.reload();
+              displayTabCompletedContent();
           });
         }
       });
     });
+  };
+
+  const displayNewProjectForm = () => {
+    if (!document.getElementById('project-form')) {
+      forms.newProjectForm().addEventListener('click', () => {
+        const formVal = document.getElementById('project-name').value;
+        if (userData.validateProjectInput(formVal)) {
+          storageHelpers.createNewProject(formVal);
+          document.getElementById('project-form').remove();
+          displayTabContent();
+        }
+      });
+    } else {
+      alert('Form Already Displayed');
+    }
   };
 
   /*
