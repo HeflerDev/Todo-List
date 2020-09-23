@@ -1,7 +1,6 @@
 {
   "name": "Todo-App",
   "version": "1.0.0",
-  "description": "",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +20,13 @@
   },
   "homepage": "https://github.com/HeflerDev/Todo-List#readme",
   "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
-  }
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "description": ""
 }
