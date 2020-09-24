@@ -2,7 +2,7 @@
 
 ## Summary
 
-[Introduction](###-Introduction)
+[Introduction](###Introduction)
 
 ## About
 
