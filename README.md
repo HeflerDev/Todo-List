@@ -2,7 +2,9 @@
 
 ## Summary
 
-[Introduction](###Introduction)
+- [Personal Info](##About)
+- [Getting Started](##Getting-Started)
+- [Details](##Details)
 
 ## About
 
@@ -14,7 +16,7 @@ This project counts towards Microverse graduation, and has the basic functionali
 that was required it to have, it's design is simple and uses *localStorage* to hold
 user data. <br>
 
-## Future Updates 
+### Future Updates 
 
 Tough the side content is still very basically used, I aim to implement an sort of
 gamified todo-list, making difficulties and tasks give the 'player' experience <br>
@@ -50,20 +52,22 @@ Install weppack and work on the src/ folder
 
 [Webpack Install Instructions](https://webpack.js.org/guides/getting-started/)
 
-## Built With
+## Details
+
+### Built With
 
 * JavaScript
 * Node.js
 * [Webpack](https://webpack.js.org/)
 
-## Contributing
+### Contributing
 
 Pull requests and contributions are all welcome, for any aditional feedback mail to hheflerdevelopment@gmail.com .
 
-## Authors
+### Author
 
 * **Alex Hefler** - *Initial work* - [HeflerDev](https://github.com/heflerdev)
 
-## License
+### License
 
 This project is licensed under the MIT License
