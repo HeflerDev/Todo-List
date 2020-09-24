@@ -1,9 +1,17 @@
 # Todo App
 
+## Summary
+
+[Introduction](###-Introduction)
+
+## About
+
+### Introduction
+
 Webpage built with *Javascript* that works as an Todo-like app, were you can
 create *projects*, *tasks* for these projects and *todos* to each task. <br>
 This project counts towards Microverse graduation, and has the basic functionality
-that was required it to have, it's design is simple and uses *localStorage* to hold <br>
+that was required it to have, it's design is simple and uses *localStorage* to hold
 user data. <br>
 
 ## Future Updates 
