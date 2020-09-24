@@ -2,75 +2,55 @@
 
 Webpage built with *Javascript* that works as an Todo-like app, were you can
 create *projects*, *tasks* for these projects and *todos* to each task. <br>
-This
+This project counts towards Microverse graduation, and has the basic functionality
+that was required it to have, it's design is simple and uses *localStorage* to hold <br>
+user data. <br>
+
+## Future Updates 
+
+Tough the side content is still very basically used, I aim to implement an sort of
+gamified todo-list, making difficulties and tasks give the 'player' experience <br>
+points. <br>
+My intention is to make time-tracking and organization experience more fun.   
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Install
 
-### Prerequisites
+* Clone the Repository on your local machine
 
-What things you need to install the software and how to install them
+`` git clone https://github.com/HeflerDev/Todo-List.git ``
 
-```
-Give examples
-```
+### Run on Linux
 
-### Installing
+* Navigate to the project 
 
-A step by step series of examples that tell you how to get a development env running
+`` cd Todo-List ``
 
-Say what the step will be
+* To open the page to to the dist folder and change permissions
 
-```
-Give the example
-```
+`` cd dist `` <br>
+`` chmod +rwx index.html ``
 
-And repeat
+* Then open through a browser (firefox for example)
 
-```
-until finished
-```
+`` firefox index.html ``
 
-End with an example of getting some data out of the system or using it for a little demo
+### To Make Changes
 
-## Running the tests
+Install weppack and work on the src/ folder
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+[Webpack Install Instructions](https://webpack.js.org/guides/getting-started/)
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* JavaScript
+* Node.js
+* [Webpack](https://webpack.js.org/)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+Pull requests and contributions are all welcome, for any aditional feedback mail to hheflerdevelopment@gmail.com .
 
 ## Authors
 
@@ -78,12 +58,4 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
-
+This project is licensed under the MIT License
