@@ -12,8 +12,12 @@ const todoTab = (() => {
     return newTaskBtn;
   };
 
+    const renderWarningProjectMessage = (message) => {
+        render.container(message, 'new-project-btn-container', ['col-12', 'warning-message']).texContent = message;
+    }
+
     const renderWarningMessage = (message) => {
-        render.container(null, 'task-form-warning-container', ['col-12', 'warning-message']).textContent = message;
+        render.container(message, 'task-form-warning-container', ['col-12', 'warning-message']).textContent = message;
     }
 
   const renderTask = (project, obj) => {
@@ -82,7 +86,7 @@ const todoTab = (() => {
   };
 
   return {
-    renderProject, renderCheckedTodo, renderTask, newProjectBtn, renderTodo, noProjectWarning, renderWarningMessage
+    renderWarningProjectMessage, renderProject, renderCheckedTodo, renderTask, newProjectBtn, renderTodo, noProjectWarning, renderWarningMessage
   };
 })();
 

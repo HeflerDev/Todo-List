@@ -56,15 +56,22 @@ const todoTabController = (() => {
 
   const displayNewProjectForm = () => {
     if (!document.getElementById('project-form')) {
+
       forms.newProjectForm().addEventListener('click', () => {
         const formVal = document.getElementById('project-name').value;
         if (userData.validateProjectInput(formVal)) {
           storageHelpers.createNewProject(formVal);
           document.getElementById('project-form').remove();
+          if (document.getElementById('Invalid Project Name')) {
+            document.getElementById('Invalid Project Name').remove();
+          }
+        } else {
+          const message = 'Invalid Project Name';
+          if (! document.getElementById(message)) {
+            todoTab.renderWarningProjectMessage(message);
+          }
         }
       });
-    } else {
-      // Do something
     }
   };
 
@@ -102,8 +109,6 @@ const todoTabController = (() => {
               const val = document.getElementById('todo-form-input').value;
               if (userData.validateTodoInput(val)) {
                 storageHelpers.addNewTodoToTask(key, obj, val);
-              } else {
-                // Do Something
               }
             });
           });
