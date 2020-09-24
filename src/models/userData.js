@@ -27,7 +27,7 @@ const userData = (() => {
     if (formErrors.length > 0) {
       return formErrors;
     }
-    return true;
+    return 'true';
   };
 
   const validateTodoInput = (data) => /^[a-zA-Z]/.test(data);

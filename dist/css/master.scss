@@ -31,8 +31,8 @@ $soft-white: rgb(245, 245, 255);
     position: absolute;
     background: $color-secondary;
     border: solid $color-primary 2px;
-    max-width: 25%;
-    min-width: 20%;
+    max-width: 40%;
+    min-width: 35%;
     border-radius: 10px;
     .btn-primary {
         background-color: $color-soft-button;
@@ -45,6 +45,18 @@ button{
         transition: 0.2s;
         transform:scale(1.05);
     }
+}
+
+.submit-btn {
+    border: solid $color-primary 2px;
+    background-color: $color-soft-button;
+    cursor: pointer;
+}
+
+.warning-message {
+    font-size: 0.8rem;
+    color:red;
+    margin-top:0.2rem;
 }
 
 .no-margin {

@@ -17,8 +17,18 @@ const todoTabController = (() => {
     const expiringDate = document.getElementById('date-input').value;
     const obj = userData.createTaskObj(name, content, difficulty, expiringDate);
     const validate = userData.validateTaskInput(obj);
-
-    if (validate === true) { storageHelpers.addNewTaskToProject(key, obj); }
+    if (Array.isArray(validate)) {
+        if (document.getElementsByClassName('warning-message')) {
+            let array = Array.from(document.getElementsByClassName('warning-message'));
+            array.forEach((item) => { item.remove() });
+        }
+            validate.forEach((message) => todoTab.renderWarningMessage(message));
+            return false;
+    } else {
+        storageHelpers.addNewTaskToProject(key, obj);
+        document.getElementById('task-form-container').remove();
+        return true;
+    }
   };
 
   const completeTodo = (key, taskName, todoDescription) => {
@@ -72,8 +82,12 @@ const todoTabController = (() => {
         document.getElementById(`project-${userData.convertToValidId(key)}`).remove();
       }
       todoTab.renderProject(key).addEventListener('click', () => {
-        forms.newTaskForm(key).addEventListener('click', () => submitTaskForm(key));
-      });
+        forms.newTaskForm(key).addEventListener('click', () => {
+                if(submitTaskForm(key)) {
+                    displayTabContent();
+                }
+            })
+        });
       JSON.parse(localStorage.getItem(key)).forEach((item) => {
         const obj = JSON.parse(item);
         if (!obj.status) {
@@ -135,11 +149,14 @@ const todoTabController = (() => {
             const editTaskForm = forms.newTaskForm(key);
             placeholdData(JSON.parse(item));
             editTaskForm.addEventListener('click', () => {
-              if (userData.validateTaskInput(obj)) {
+              const validation = userData.validateTaskInput(obj);
+              if (! Array.isArray(validation)) {
                 const obj = gatherDataFromForm();
                 storageHelpers.removeTaskFromProject(key, item);
                 storageHelpers.addNewTaskToProject(key, obj);
                 displayTabContent();
+              } else {
+                console.log('this is false as fuck');
               }
             });
           });

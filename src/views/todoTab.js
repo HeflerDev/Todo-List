@@ -12,6 +12,10 @@ const todoTab = (() => {
     return newTaskBtn;
   };
 
+    const renderWarningMessage = (message) => {
+        render.container(null, 'task-form-warning-container', ['col-12', 'warning-message']).textContent = message;
+    }
+
   const renderTask = (project, obj) => {
     render.container(`task-${project}-${obj.name}`, `project-${project}`, ['task-container']);
     render.container(`task-${project}-${obj.name}-name-container`, `task-${project}-${obj.name}`, ['flex-grid']);
@@ -78,7 +82,7 @@ const todoTab = (() => {
   };
 
   return {
-    renderProject, renderCheckedTodo, renderTask, newProjectBtn, renderTodo, noProjectWarning,
+    renderProject, renderCheckedTodo, renderTask, newProjectBtn, renderTodo, noProjectWarning, renderWarningMessage
   };
 })();
 

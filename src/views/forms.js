@@ -3,7 +3,7 @@ import render from './render';
 const forms = (() => {
   const newProjectForm = () => {
     render.container('project-form-container', 'new-project-btn-container', ['box', 'col-12'], 'div');
-    render.container('project-form', 'project-form-container', ['flex-grid'], 'form');
+    const form = render.container('project-form', 'project-form-container', ['flex-grid'], 'form');
     const label = render.container('p', 'project-form', ['col-12'], 'label');
     label.textContent = 'Project Name';
     render.container('project-name', 'project-form', ['col-12'], 'input');
@@ -15,6 +15,7 @@ const forms = (() => {
 
   const newTaskForm = (project) => {
     render.container('task-form-container', project, ['box']);
+    render.container('task-form-warning-container', 'task-form-container')
     render.container('task-form', 'task-form-container', 'flex-grid', 'form');
     render.container('name-label', 'task-form', ['col-12'], 'label').textContent = 'Name';
     render.container('name-input', 'task-form', ['col-12'], 'input');
@@ -38,9 +39,8 @@ const forms = (() => {
     render.container('date-label', 'task-form', null, 'label');
     const datePick = render.container('date-input', 'task-form', ['col-6'], 'input');
     datePick.type = 'date';
-    const submitBtn = render.container('task-submit', 'task-form', ['col-6'], 'input');
-    submitBtn.value = 'Submit';
-    submitBtn.type = 'submit';
+    const submitBtn = render.container('task-submit', 'task-form', ['col-6', 'submit-btn'], 'div');
+    submitBtn.textContent = 'Submit';
     return submitBtn;
   };
 

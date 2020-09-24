@@ -19,8 +19,8 @@
   position: absolute;
   background: #bebebe;
   border: solid #3d3d3d 2px;
-  max-width: 25%;
-  min-width: 20%;
+  max-width: 40%;
+  min-width: 35%;
   border-radius: 10px; }
   #task-form-container .btn-primary {
     background-color: gainsboro; }
@@ -30,6 +30,16 @@ button {
   button:hover {
     transition: 0.2s;
     transform: scale(1.05); }
+
+.submit-btn {
+  border: solid #3d3d3d 2px;
+  background-color: gainsboro;
+  cursor: pointer; }
+
+.warning-message {
+  font-size: 0.8rem;
+  color: red;
+  margin-top: 0.2rem; }
 
 .no-margin {
   margin: 0;
