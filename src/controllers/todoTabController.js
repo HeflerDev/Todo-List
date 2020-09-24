@@ -18,17 +18,16 @@ const todoTabController = (() => {
     const obj = userData.createTaskObj(name, content, difficulty, expiringDate);
     const validate = userData.validateTaskInput(obj);
     if (Array.isArray(validate)) {
-        if (document.getElementsByClassName('warning-message')) {
-            let array = Array.from(document.getElementsByClassName('warning-message'));
-            array.forEach((item) => { item.remove() });
-        }
-            validate.forEach((message) => todoTab.renderWarningMessage(message));
-            return false;
-    } else {
-        storageHelpers.addNewTaskToProject(key, obj);
-        document.getElementById('task-form-container').remove();
-        return true;
+      if (document.getElementsByClassName('warning-message')) {
+        const array = Array.from(document.getElementsByClassName('warning-message'));
+        array.forEach((item) => { item.remove(); });
+      }
+      validate.forEach((message) => todoTab.renderWarningMessage(message));
+      return false;
     }
+    storageHelpers.addNewTaskToProject(key, obj);
+    document.getElementById('task-form-container').remove();
+    return true;
   };
 
   const completeTodo = (key, taskName, todoDescription) => {
@@ -56,7 +55,6 @@ const todoTabController = (() => {
 
   const displayNewProjectForm = () => {
     if (!document.getElementById('project-form')) {
-
       forms.newProjectForm().addEventListener('click', () => {
         const formVal = document.getElementById('project-name').value;
         if (userData.validateProjectInput(formVal)) {
@@ -67,7 +65,7 @@ const todoTabController = (() => {
           }
         } else {
           const message = 'Invalid Project Name';
-          if (! document.getElementById(message)) {
+          if (!document.getElementById(message)) {
             todoTab.renderWarningProjectMessage(message);
           }
         }
@@ -90,11 +88,11 @@ const todoTabController = (() => {
       }
       todoTab.renderProject(key).addEventListener('click', () => {
         forms.newTaskForm(key).addEventListener('click', () => {
-                if(submitTaskForm(key)) {
-                    displayTabContent();
-                }
-            })
+          if (submitTaskForm(key)) {
+            displayTabContent();
+          }
         });
+      });
       JSON.parse(localStorage.getItem(key)).forEach((item) => {
         const obj = JSON.parse(item);
         if (!obj.status) {
@@ -155,13 +153,11 @@ const todoTabController = (() => {
             placeholdData(JSON.parse(item));
             editTaskForm.addEventListener('click', () => {
               const validation = userData.validateTaskInput(obj);
-              if (! Array.isArray(validation)) {
+              if (!Array.isArray(validation)) {
                 const obj = gatherDataFromForm();
                 storageHelpers.removeTaskFromProject(key, item);
                 storageHelpers.addNewTaskToProject(key, obj);
                 displayTabContent();
-              } else {
-                console.log('this is false as fuck');
               }
             });
           });
