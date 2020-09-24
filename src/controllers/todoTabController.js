@@ -53,26 +53,6 @@ const todoTabController = (() => {
     storageHelpers.removeTodoFromTask(key, taskName, todoDescription);
   };
 
-  const displayNewProjectForm = () => {
-    if (!document.getElementById('project-form')) {
-      forms.newProjectForm().addEventListener('click', () => {
-        const formVal = document.getElementById('project-name').value;
-        if (userData.validateProjectInput(formVal)) {
-          storageHelpers.createNewProject(formVal);
-          document.getElementById('project-form').remove();
-          if (document.getElementById('Invalid Project Name')) {
-            document.getElementById('Invalid Project Name').remove();
-          }
-        } else {
-          const message = 'Invalid Project Name';
-          if (!document.getElementById(message)) {
-            todoTab.renderWarningProjectMessage(message);
-          }
-        }
-      });
-    }
-  };
-
   /*
      * This function display the entire todo tab, taking the data from the view
      * and sending to the model
@@ -80,7 +60,24 @@ const todoTabController = (() => {
 
   const displayTabContent = () => {
     if (!document.getElementById('new-project-btn')) {
-      todoTab.newProjectBtn().addEventListener('click', displayNewProjectForm);
+      todoTab.newProjectBtn().addEventListener('click', () => {
+        forms.newProjectForm().addEventListener('click', () => {
+          const formVal = document.getElementById('project-name').value;
+          if (userData.validateProjectInput(formVal)) {
+            storageHelpers.createNewProject(formVal);
+            document.getElementById('project-form-container').remove();
+            if (document.getElementById('Invalid Project Name')) {
+              document.getElementById('Invalid Project Name').remove();
+            }
+            displayTabContent();
+          } else {
+            const message = 'Invalid Project Name';
+            if (!document.getElementById(message)) {
+              todoTab.renderWarningProjectMessage(message);
+            }
+          }
+        });
+      });
     }
     Object.keys(localStorage).forEach((key) => {
       if (document.getElementById(`project-${userData.convertToValidId(key)}`)) {
@@ -205,7 +202,7 @@ const todoTabController = (() => {
   if (!storageHelpers.checkForProjectExistence()) {
     todoTab.noProjectWarning();
   }
-  return { displayTabContent, displayTabCompletedContent, displayNewProjectForm };
+  return { displayTabContent, displayTabCompletedContent };
 })();
 
 export default todoTabController;

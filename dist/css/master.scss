@@ -24,6 +24,7 @@ $soft-white: rgb(245, 245, 255);
     min-width: 30%;
     .btn-primary {
         background-color: $color-soft-button;
+        cursor: pointer;
     }
 }
 

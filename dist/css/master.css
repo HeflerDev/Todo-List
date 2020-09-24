@@ -13,7 +13,8 @@
   max-width: 35%;
   min-width: 30%; }
   #project-form-container .btn-primary {
-    background-color: gainsboro; }
+    background-color: gainsboro;
+    cursor: pointer; }
 
 #task-form-container {
   position: absolute;

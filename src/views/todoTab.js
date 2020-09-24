@@ -13,7 +13,7 @@ const todoTab = (() => {
   };
 
   const renderWarningProjectMessage = (message) => {
-    render.container(message, 'new-project-btn-container', ['col-12', 'warning-message']).texContent = message;
+    render.container(message, 'project-form-container', ['col-12', 'warning-messag']).texContent = message;
   };
 
   const renderWarningMessage = (message) => {

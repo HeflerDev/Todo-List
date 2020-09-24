@@ -7,9 +7,8 @@ const forms = (() => {
     const label = render.container('p', 'project-form', ['col-12'], 'label');
     label.textContent = 'Project Name';
     render.container('project-name', 'project-form', ['col-12'], 'input');
-    const submitBtn = render.container('project-submit-btn', 'project-form', ['col-12', 'btn-primary'], 'input');
-    submitBtn.type = 'submit';
-    submitBtn.value = 'Create Project!';
+    const submitBtn = render.container('project-submit-btn', 'project-form', ['col-12', 'btn-primary']);
+    submitBtn.textContent = 'Create Project!';
     return submitBtn;
   };
 
