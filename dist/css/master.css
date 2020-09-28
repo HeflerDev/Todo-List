@@ -1,8 +1,6 @@
 @import url(./reset.css);
 @import url(./framework.css);
-/* Color Theme Swatches in Hex */
-/* Color Theme Swatches in RGBA */
-/* Color Theme Swatches in HSLA */
+/* Color Pallete Theme Swatches in Hex */
 #left-section {
   position: sticky;
   top: 0;
@@ -31,6 +29,7 @@
     background-color: gainsboro; }
 
 button {
+  background: #D5D5D5;
   border-radius: 0.2rem; }
   button:hover {
     transition: 0.2s;
@@ -67,8 +66,13 @@ button {
   margin-top: 0.2rem; }
 
 .new-task-btn {
-  background-color: #1a1a1a;
-  color: whitesmoke; }
+  background-color: #D5D5D5;
+  color: #0D0D0D;
+  transition: 0.2s; }
+  .new-task-btn:hover {
+    transition: 0.2s;
+    background-color: #0D0D0D;
+    color: #D5D5D5; }
 
 .no-bounds {
   padding: 0; }
@@ -107,8 +111,13 @@ button {
   border-radius: 0.2rem; }
 
 .btn-primary {
+  color: #0D0D0D;
   border: solid #6E7A93 1px;
-  background-color: #96848D; }
+  background-color: #6E7A93;
+  transition: 0.2s; }
+  .btn-primary:hover {
+    color: #D5D5D5;
+    background-color: #0D0D0D; }
 
 .todo-container {
   font-size: 0.8rem;

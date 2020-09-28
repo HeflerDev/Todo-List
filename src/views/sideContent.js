@@ -31,12 +31,13 @@ const sideContent = (() => {
       }
   };
 
-    const info = () => {
-        // Code
+    const displayInfo = (taskName) => {
+        render.container(`info-${taskName}`, 'statistics-completing-completed', 'minibox').textContent = ` - ${taskName}`;
     };
 
   return {
     renderData,
+      displayInfo,
   };
 })();
 
