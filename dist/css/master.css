@@ -37,10 +37,24 @@ button {
   background-color: gainsboro;
   cursor: pointer; }
 
+.btn-edit {
+  border: none;
+  background-color: yellow;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px; }
+
 .warning-message {
   font-size: 0.8rem;
   color: red;
   margin-top: 0.2rem; }
+
+.new-task-btn {
+  background-color: #1a1a1a;
+  color: whitesmoke; }
+
+.no-bounds {
+  padding: 0; }
 
 .no-margin {
   margin: 0;
@@ -54,10 +68,16 @@ button {
 
 .project-container {
   border-radius: 0 10px 10px 0;
-  background-color: #bebebe; }
+  background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, #bebebe 100%); }
+
+.task-description {
+  padding: 0;
+  font-size: 0.7rem;
+  text-align: left;
+  color: #646464; }
 
 .task-container {
-  border: solid #3d3d3d 1px;
+  border: none;
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 0.5rem; }
@@ -74,12 +94,16 @@ button {
   background-color: #bebebe; }
 
 .todo-container {
-  background-color: #f0f0f0;
-  border-bottom: solid #bebebe 1px; }
+  font-size: 0.8rem;
+  color: #3d3d3d;
+  box-shadow: 1px 1px #bebebe; }
 
 .complete-btn {
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   transition: 0.2s;
-  border-radius: 0;
   border: solid #3d3d3d 1px;
   background-color: white; }
   .complete-btn:hover {
@@ -90,7 +114,9 @@ button {
     background-position: center; }
 
 .uncomplete-btn {
-  border-radius: 0;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
   border: solid #3d3d3d 1px;
   background-color: white;
   background-image: url("https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png");
@@ -102,10 +128,13 @@ button {
 
 .completed-todo {
   color: gray;
-  text-decoration: line-through; }
+  text-decoration: line-through;
+  font-size: 0.7rem; }
 
 .completed-btn {
-  border-radius: 0;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
   border: solid #3d3d3d 1px;
   background-image: url("https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png");
   background-size: 100%;
@@ -133,32 +162,49 @@ button {
   display: flex; }
 
 .easy-container {
-  border: solid #7cc87c 1px;
-  background-color: green; }
+  color: green; }
 
 .medium-container {
-  border: solid #64dcdc 1px;
-  background-color: yellow; }
+  color: yellow; }
 
 .hard-container {
-  border: solid darkred 1px;
-  background-color: red; }
+  color: red; }
 
 .btn-secondary {
   border: solid #bebebe 2px;
   background-color: gainsboro;
   border-radius: 0.5rem; }
 
+.btn-todo {
+  margin-bottom: 0.2rem;
+  padding: 0.2rem;
+  transition: 0.1s;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+  color: #3d3d3d;
+  background-color: #bebebe; }
+  .btn-todo:hover {
+    transform: scale(1.1);
+    transition: 0.1s;
+    background-color: #3d3d3d;
+    color: #bebebe;
+    cursor: pointer; }
+
+.soft-button {
+  color: #bebebe; }
+  .soft-button:hover {
+    cursor: pointer; }
+
 .btn-danger {
+  width: 15px;
+  height: 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   background-color: #f02010;
   color: whitesmoke; }
 
 .date-field-warning {
-  background-color: red;
-  color: white;
-  border: none; }
+  color: red; }
 
 .margin-1 {
   margin: 0.5rem; }

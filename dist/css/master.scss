@@ -7,7 +7,10 @@ $border-primary: 1px;
 $border-secondary: 2px;
 $color-danger: rgb(240,32,16) ;
 $color-soft-button: rgb(220,220,220);
+$color-soft-gradient: linear-gradient(90deg, rgba(2,0,36,0) 0%, $color-secondary 100%);
 $soft-white: rgb(245, 245, 255);
+$color-soft-gradient-180: linear-gradient(180deg, rgba(2,0,36,0) 0%, $soft-white 100%);
+$color-text-secondary: rgb(100,100,100);
 
 #left-section {
     position: sticky;
@@ -54,10 +57,27 @@ button{
     cursor: pointer;
 }
 
+.btn-edit {
+    border: none;
+    background-color:yellow;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+}
+
 .warning-message {
     font-size: 0.8rem;
     color:red;
     margin-top:0.2rem;
+}
+
+.new-task-btn {
+    background-color: rgb(26,26,26);
+    color: whitesmoke;
+}
+
+.no-bounds {
+    padding:0;
 }
 
 .no-margin {
@@ -74,11 +94,18 @@ button{
 
 .project-container {
     border-radius: 0 10px 10px 0;
-    background-color:$color-secondary;
+    background: $color-soft-gradient;
+}
+
+.task-description {
+    padding: 0;
+    font-size: 0.7rem;
+    text-align: left;
+    color: $color-text-secondary;
 }
 
 .task-container {
-    border: solid $color-primary $border-primary;
+    border: none;
     border-radius: 0.5rem;
     padding: 1rem;
     margin: 0.5rem;
@@ -98,13 +125,17 @@ button{
 }
 
 .todo-container {
-    background-color: rgb(240, 240, 240);
-    border-bottom: solid $color-secondary 1px;
+    font-size: 0.8rem;
+    color: $color-primary;
+    box-shadow: 1px 1px $color-secondary;
 }
 
 .complete-btn {
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     transition: 0.2s;
-    border-radius: 0;
     border: solid $color-primary 1px;
     background-color: rgba(255,255,255,1.0);
     &:hover {
@@ -117,7 +148,9 @@ button{
 }
 
 .uncomplete-btn {
-    border-radius: 0;
+    border-radius: 50%;
+    width: 10px ;
+    height: 10px;
     border: solid $color-primary 1px;
     background-color: rgba(255,255,255,1.0);
     background-image: url('https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png');
@@ -132,10 +165,13 @@ button{
 .completed-todo {
     color: gray;
     text-decoration: line-through;
+    font-size: 0.7rem;
 }
 
 .completed-btn {
-    border-radius: 0;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
     border: solid $color-primary 1px;
     background-image: url('https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png');
     background-size: 100%;
@@ -167,18 +203,15 @@ button{
 }
 
 .easy-container {
-    border: solid rgb(124, 200, 124) 1px;
-    background-color: green;
+    color: green;
 }
 
 .medium-container {
-    border: solid rgb(100, 220, 220) 1px;
-    background-color:yellow;
+    color:yellow;
 }
 
 .hard-container {
-    border: solid darkred 1px;
-    background-color: red;
+    color: red;
 }
 
 .btn-secondary {
@@ -187,17 +220,41 @@ button{
     border-radius: 0.5rem;
 }
 
+.btn-todo {
+    margin-bottom: 0.2rem;
+    padding: 0.2rem;
+    transition: 0.1s;
+    font-size: 0.9rem;
+    border-radius: 1rem;
+   color:$color-primary;
+   background-color: $color-secondary;
+   &:hover {
+        transform:scale(1.1);
+        transition: 0.1s;
+        background-color: $color-primary;
+        color: $color-secondary;
+        cursor:pointer;
+   }
+}
+
+.soft-button {
+    color: $color-secondary;
+    &:hover {
+        cursor:pointer;
+    }
+}
+
 .btn-danger {
+    width: 15px;
+    height: 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     background-color: $color-danger;
     color: whitesmoke;
 }
 
 .date-field-warning {
-   background-color: red;
-   color: white;
-   border: none;
+   color: red;
 }
 
 .margin-1 {
