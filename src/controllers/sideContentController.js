@@ -3,7 +3,7 @@ import storageHelpers from '../models/storageHelpers';
 
 const sideContentController = () => {
   const data = storageHelpers.gatherStorageData();
-  sideContent.data(data.completed, data.uncompleted, data.onTime, data.lateTime);
+  sideContent.renderData(data.completed, data.uncompleted, data.onTime, data.lateTime);
 };
 
 export default sideContentController;

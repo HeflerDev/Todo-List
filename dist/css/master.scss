@@ -1,13 +1,35 @@
 @import  './reset.css' ;
 @import './framework.css' ;
 
-$color-secondary: rgb(190,190,190);
-$color-primary: rgb(61,61,61);
+/* Color Theme Swatches in Hex */
+$MINIMALISTA-1-hex: #96848D;
+$MINIMALISTA-2-hex: #6E7A93;
+$MINIMALISTA-3-hex: #8F99A1;
+$MINIMALISTA-4-hex: #D5D5D5;
+$MINIMALISTA-5-hex: #0D0D0D;
+
+/* Color Theme Swatches in RGBA */
+$MINIMALISTA-1-rgba: rgba(149,131,140, 1);
+$MINIMALISTA-2-rgba: rgba(110,121,147, 1);
+$MINIMALISTA-3-rgba: rgba(142,153,161, 1);
+$MINIMALISTA-4-rgba: rgba(212,212,212, 1);
+$MINIMALISTA-5-rgba: rgba(13,13,13, 1);
+
+/* Color Theme Swatches in HSLA */
+$MINIMALISTA-1-hsla: hsla(329, 7, 55, 1);
+$MINIMALISTA-2-hsla: hsla(220, 14, 50, 1);
+$MINIMALISTA-3-hsla: hsla(206, 8, 59, 1);
+$MINIMALISTA-4-hsla: hsla(0, 0, 83, 1);
+$MINIMALISTA-5-hsla: hsla(0, 0, 5, 1);
+
+$color-secondary: #96848D;
+$color-primary: #6E7A93;
+$color-soft: #D5D5D5;
 $border-primary: 1px;
 $border-secondary: 2px;
 $color-danger: rgb(240,32,16) ;
 $color-soft-button: rgb(220,220,220);
-$color-soft-gradient: linear-gradient(90deg, rgba(2,0,36,0) 0%, $color-secondary 100%);
+$color-soft-gradient: linear-gradient(90deg, rgba(2,0,36,0) 0%, $color-soft 100%);
 $soft-white: rgb(245, 245, 255);
 $color-soft-gradient-180: linear-gradient(180deg, rgba(2,0,36,0) 0%, $soft-white 100%);
 $color-text-secondary: rgb(100,100,100);
@@ -17,6 +39,7 @@ $color-text-secondary: rgb(100,100,100);
     top: 0;
     height: 100vh;
     background-color: $color-secondary;
+    box-shadow: 0.1rem 0  0.2rem $color-primary;
 }
 
 #project-form-container {
@@ -48,6 +71,21 @@ button{
      &:hover{
         transition: 0.2s;
         transform:scale(1.05);
+    }
+}
+
+.info-container {
+    background-color: $color-soft;
+    color: $color-primary;
+    padding: 2px;
+    margin-bottom: 2px;
+    border-radius: 20px;
+    transition: 0.2s;
+    &:hover {
+        background-color: $color-primary;
+        color: $color-soft;
+        transition: 0.2s;
+        cursor: pointer;
     }
 }
 
@@ -168,6 +206,20 @@ button{
     font-size: 0.7rem;
 }
 
+.side-info {
+    text-align: left;
+}
+
+.icon-good {
+ color: green;
+ margin: auto;
+}
+
+.icon-bad {
+    margin: auto;
+    color: red;
+}
+
 .completed-btn {
     border-radius: 50%;
     width: 15px;
@@ -227,11 +279,11 @@ button{
     font-size: 0.9rem;
     border-radius: 1rem;
    color:$color-primary;
-   background-color: $color-secondary;
+   background-color: $color-soft;
    &:hover {
         transform:scale(1.1);
         transition: 0.1s;
-        background-color: $color-primary;
+        background-color: $color-soft;
         color: $color-secondary;
         cursor:pointer;
    }
