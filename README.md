@@ -2,7 +2,7 @@
 
 ## Summary
 
-- [Personal Info](##About)
+- [Project Info](##About)
 - [Getting Started](##Getting-Started)
 - [Details](##Details)
 
@@ -16,12 +16,25 @@ This project counts towards Microverse graduation, and has the basic functionali
 that was required it to have, it's design is simple and uses *localStorage* to hold
 user data. <br>
 
-### Future Updates 
+### Content
+
+* Project Creation
+    - Project Name
+* Task Creation
+    - Task Name
+    - Task Description
+    - Task Difficulty
+    - Date
+* Todo Creation
+    - Todo Name
+* View completed and uncompleted tasks
+
+### Future Updates
 
 Tough the side content is still very basically used, I aim to implement an sort of
 gamified todo-list, making difficulties and tasks give the 'player' experience <br>
 points. <br>
-My intention is to make time-tracking and organization experience more fun.   
+My intention is to make time-tracking and organization experience more fun.
 
 ## Getting Started
 
@@ -31,26 +44,22 @@ My intention is to make time-tracking and organization experience more fun.
 
 `` git clone https://github.com/HeflerDev/Todo-List.git ``
 
-### Run on Linux
+* If you don't have globally, install webpack dev server
 
-* Navigate to the project 
+`` npm install --save-dev webpack-dev-server ``
 
-`` cd Todo-List ``
+* To start the application, run npm
 
-* To open the page to to the dist folder and change permissions
+`` npm start ``
 
-`` cd dist `` <br>
-`` chmod +rwx index.html ``
-
-* Then open through a browser (firefox for example)
-
-`` firefox index.html ``
+It will start on port 8080 by default
 
 ### To Make Changes
 
-Install weppack and work on the src/ folder
-
-[Webpack Install Instructions](https://webpack.js.org/guides/getting-started/)
+Please, make changes only to the src folder. <br>
+If you don't have webpack installed on your local machine, follow the instalation
+instructions:
+* [Webpack Install Instructions](https://webpack.js.org/guides/getting-started/)
 
 ## Details
 
