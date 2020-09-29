@@ -115,23 +115,21 @@ const storageHelpers = (() => {
     return false;
   };
 
-    const gatherCompletedTasksNames = () => {
-        let array = [];
-        Object.keys(localStorage).forEach((key) => {
-            JSON.parse(localStorage.getItem(key)).forEach((task) => {
-                const taskObj = JSON.parse(task);
-                if (taskObj.status === true) {
-                    array.push(taskObj.name);
-                }
-            });
-
-        });
-        if (array.length > 0) {
-            return array;
-        } else {
-            return ["There isn't any completed tasks"];
+  const gatherCompletedTasksNames = () => {
+    const array = [];
+    Object.keys(localStorage).forEach((key) => {
+      JSON.parse(localStorage.getItem(key)).forEach((task) => {
+        const taskObj = JSON.parse(task);
+        if (taskObj.status === true) {
+          array.push(taskObj.name);
         }
+      });
+    });
+    if (array.length > 0) {
+      return array;
     }
+    return ["There isn't any completed tasks"];
+  };
 
   const gatherStorageData = () => {
     let completedTasks = 0;

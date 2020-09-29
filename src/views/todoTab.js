@@ -21,32 +21,32 @@ const todoTab = (() => {
   };
 
   const renderTask = (project, obj) => {
-    const idString = `task-${project}-${obj.name}`
+    const idString = `task-${project}-${obj.name}`;
 
     render.container(`${idString}`, `project-${project}`, ['task-container']);
     render.container(`${idString}-container`, `task-${project}-${obj.name}`, ['flex-grid']);
-        render.container(`${idString}-complete-task-container`, `${idString}-container`, ['col-1', 'minibox', 'no-bounds'])
-            const completeTaskBtn = render.container(`${idString}-complete-task-btn`, `${idString}-complete-task-container`, ['complete-btn', 'minibox'], 'button');
-        render.container(`${idString}-content-task-name`, `${idString}-container`, ['col-10', 'minibox', 'no-bounds']).textContent = obj.name;
-        render.container(`${idString}-delete-button-container`, `${idString}-container`, ['col-1', 'minibox']);
-            const deleteBtn = render.container(null, `${idString}-delete-button-container`, ['btn-danger'], 'button');
-            deleteBtn.title = 'Delete Task'
-            const editBtn = render.container(null, `${idString}-delete-button-container`, ['minibox', 'no-bounds', 'btn-edit'], 'button');
-            editBtn.title = 'Edit Task';
-        render.container(null, `${idString}-container`, ['col-1']);
-        render.container(null, `${idString}-container`, ['col-11', 'start', 'task-description']).textContent = obj.content;
-        render.container(null, `${idString}-container`, 'col-1')
-        render.container(`${idString}-info-container`, `${idString}-container`, ['col-11', 'minibox', 'between', 'no-bounds']);
-            const difficultyInfo = render.container(`${idString}-details-difficulty`, `${idString}-info-container`);
-            difficultyInfo.textContent = obj.difficulty;
-            const dateInfo = render.container(`task-${project}-${obj.name}-details-date`, `${idString}-info-container`);
-            dateInfo.textContent = obj.date;
-        render.container(null, `${idString}-container`, 'col-1')
-        render.container(`${idString}-todo-button-container`, `${idString}-container`, ['col-11', 'minibox', 'end', 'no-bounds']);
-            const todoBtn =  render.container(`${idString}-todo-button`, `${idString}-todo-button-container`, ['no-bounds', 'btn-todo']);
-            todoBtn.textContent = '+ Todo'
-        render.container(null, `${idString}-container`, 'col-1')
-        render.container(`${idString}-todo-container`, `${idString}-container`, 'col-11')
+    render.container(`${idString}-complete-task-container`, `${idString}-container`, ['col-1', 'minibox', 'no-bounds']);
+    const completeTaskBtn = render.container(`${idString}-complete-task-btn`, `${idString}-complete-task-container`, ['complete-btn', 'minibox'], 'button');
+    render.container(`${idString}-content-task-name`, `${idString}-container`, ['col-10', 'minibox', 'no-bounds']).textContent = obj.name;
+    render.container(`${idString}-delete-button-container`, `${idString}-container`, ['col-1', 'minibox']);
+    const deleteBtn = render.container(null, `${idString}-delete-button-container`, ['btn-danger'], 'button');
+    deleteBtn.title = 'Delete Task';
+    const editBtn = render.container(null, `${idString}-delete-button-container`, ['minibox', 'no-bounds', 'btn-edit'], 'button');
+    editBtn.title = 'Edit Task';
+    render.container(null, `${idString}-container`, ['col-1']);
+    render.container(null, `${idString}-container`, ['col-11', 'start', 'task-description']).textContent = obj.content;
+    render.container(null, `${idString}-container`, 'col-1');
+    render.container(`${idString}-info-container`, `${idString}-container`, ['col-11', 'minibox', 'between', 'no-bounds']);
+    const difficultyInfo = render.container(`${idString}-details-difficulty`, `${idString}-info-container`);
+    difficultyInfo.textContent = obj.difficulty;
+    const dateInfo = render.container(`task-${project}-${obj.name}-details-date`, `${idString}-info-container`);
+    dateInfo.textContent = obj.date;
+    render.container(null, `${idString}-container`, 'col-1');
+    render.container(`${idString}-todo-button-container`, `${idString}-container`, ['col-11', 'minibox', 'end', 'no-bounds']);
+    const todoBtn = render.container(`${idString}-todo-button`, `${idString}-todo-button-container`, ['no-bounds', 'btn-todo']);
+    todoBtn.textContent = '+ Todo';
+    render.container(null, `${idString}-container`, 'col-1');
+    render.container(`${idString}-todo-container`, `${idString}-container`, 'col-11');
     return {
       todoBtn,
       editBtn,
@@ -61,12 +61,12 @@ const todoTab = (() => {
     const idString = `task-${project}-${taskName}-${todo}`;
     render.container(`${idString}-todo`, `task-${project}-${taskName}-todo-container`, ['flex-grid', 'todo-container']);
     render.container(`${idString}-todo-container-complete-button-container`, `${idString}-todo`, 'col-1');
-        const checkBtn = render.container(`${idString}-todo-container-button`, `${idString}-todo-container-complete-button-container`, 'complete-btn', 'button');
+    const checkBtn = render.container(`${idString}-todo-container-button`, `${idString}-todo-container-complete-button-container`, 'complete-btn', 'button');
     const [todoDescription] = JSON.parse(todo);
     render.container(`todo-${project}-${taskName}-${todo}-todo-container-description`, `task-${project}-${taskName}-${todo}-todo`, 'col-10').textContent = todoDescription;
     render.container(`${idString}-todo-container-delete-button-container`, `${idString}-todo`, 'col-1');
-        const deleteBtn = render.container(`${idString}-todo-container-delete-button`, `${idString}-todo-container-delete-button-container`, 'soft-button');
-        deleteBtn.textContent = 'X';
+    const deleteBtn = render.container(`${idString}-todo-container-delete-button`, `${idString}-todo-container-delete-button-container`, 'soft-button');
+    deleteBtn.textContent = 'X';
     return {
       checkBtn,
       deleteBtn,
@@ -77,7 +77,7 @@ const todoTab = (() => {
     const idString = `task-${project}-${taskName}-${todo}`;
     render.container(`${idString}-todo`, `task-${project}-${taskName}-todo-container`, ['flex-grid', 'completed-todo']);
     render.container(`${idString}-todo-container-complete-button-container`, `${idString}-todo`, 'col-1');
-        const checkBtn = render.container(`${idString}-todo-container-button`, `${idString}-todo-container-complete-button-container`, 'complete-btn', 'button');
+    const checkBtn = render.container(`${idString}-todo-container-button`, `${idString}-todo-container-complete-button-container`, 'complete-btn', 'button');
     const [todoDescription] = JSON.parse(todo);
     render.container(`todo-${project}-${taskName}-${todo}-todo-container-description`, `task-${project}-${taskName}-${todo}-todo`, 'col-10').textContent = todoDescription;
     return { checkBtn };
