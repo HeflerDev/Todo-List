@@ -44,7 +44,7 @@ const forms = (() => {
   };
 
   const newTodoForm = (project, taskName) => {
-    render.container('todo-form-container', `task-${project}-${taskName}-info-container`, 'box', 'form');
+    render.container('todo-form-container', `task-${project}-${taskName}-todo-button-container`, ['flex-grid'], 'form');
     render.container('todo-form-label', 'todo-form-container', null, 'label');
     render.container('todo-form-input', 'todo-form-container', null, 'input');
     const submitBtn = render.container('todo-form-submit', 'todo-form-container', null, 'input');

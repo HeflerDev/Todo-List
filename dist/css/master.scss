@@ -10,7 +10,7 @@ $MINIMALISTA-5-hex: #0D0D0D;
 
 $color-secondary: #96848D;
 $color-primary: #6E7A93;
-$color-soft: #D5D5D5;
+$color-soft: rgb(230,230,240);
 $color-dark: #0D0D0D;
 $border-primary: 1px;
 $border-secondary: 2px;
@@ -86,9 +86,8 @@ button{
 .btn-edit {
     border: none;
     background-color:yellow;
-    border-radius: 50%;
-    height: 15px;
-    width: 15px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .warning-message {
@@ -132,15 +131,52 @@ button{
 .task-description {
     padding: 0;
     font-size: 0.7rem;
-    text-align: left;
+    text-align: center;
     color: $color-text-secondary;
 }
 
+.task-name {
+    padding: 0.1rem;
+    border-radius: 4px;
+    transition: 1s;
+    &:hover {
+        transition: 0.2s;
+        background-color: $color-soft;
+        cursor: pointer;
+    }
+}
+
+.info {
+    box-shadow: 0 0 3px 2px $color-secondary;
+    border-radius: 10px;
+    background-color: $color-soft;
+    position: absolute;
+    width: 25%;
+    transition: 0.2s;
+    &:hover {
+        transition: 0.2s;
+        box-shadow: 0 0 4px 5px $color-primary;
+    }
+    .close-button {
+        border: none;
+        display: absolute;
+        background-color: red;
+        color: white;
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
 .task-container {
+    transition: 1s;
     border: none;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 0.5rem;
     margin: 0.5rem;
+    &:hover {
+        transition: 0.2s;
+        box-shadow: 0 0 5px 1px $color-soft;
+    }
 }
 
 .task-field {
@@ -165,7 +201,8 @@ button{
 .todo-container {
     font-size: 0.8rem;
     color: $color-primary;
-    box-shadow: 1px 1px $color-secondary;
+    box-shadow: 1px 1px 1px 1px $color-soft;
+    background-color: rgb(245,245,245);
 }
 
 .complete-btn {
@@ -232,11 +269,24 @@ button{
 }
 
 #todo-form-container {
-   background-color: $color-secondary;
-   border: solid $color-primary 5px;
-   border-radius: 2rem;
+   background-color: $color-soft;
+   border: solid $color-primary 1px;
+   border-radius: 0.1rem;
    position: absolute;
    max-width: 35%;
+   #todo-form-input {
+    border: none;
+    color: $color-primary;
+    background-color:rgba(255,255,255,1);
+    border-bottom: solid $color-primary 1px;
+   }
+   input {
+    background-color: $color-primary;
+    color: whitesmoke;
+    border: none;
+    margin:0;
+    padding:3px;
+   }
 };
 
 .no-project-warning {
@@ -297,16 +347,24 @@ button{
 }
 
 .btn-danger {
-    width: 15px;
-    height: 15px;
     border: none;
-    border-radius: 50%;
     background-color: $color-danger;
     color: whitesmoke;
 }
 
 .date-field-warning {
+    transition: 0.2s;
    color: red;
+   box-shadow: 0 0 2px 2px red;
+   margin-bottom: 0.2rem;
+    &:hover {
+        transition: 0.2s;
+        transform: scale(1.1);
+        box-shadow: 0 0 0 0;
+        background-color:red;
+        color:white;
+        cursor:default;
+    }
 }
 
 .margin-1 {

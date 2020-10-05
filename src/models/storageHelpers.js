@@ -10,6 +10,7 @@ const storageHelpers = (() => {
     return false;
   };
 
+
   const findDataIndexByKey = (key, value) => {
     const item = localStorage.getItem(key);
     let result = -1;

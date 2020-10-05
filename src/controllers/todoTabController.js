@@ -41,16 +41,66 @@ const todoTabController = (() => {
   const placeholdData = (obj) => {
     document.getElementById('name-input').value = obj.name;
     document.getElementById('content-input').value = obj.content;
+    document.getElementById('difficulty-select').value = obj.difficulty;
+    document.getElementById('date-input').value = obj.date;
   };
 
   const gatherDataFromForm = () => {
     const name = document.getElementById('name-input').value;
     const content = document.getElementById('content-input').value;
-    return userData.createTaskObj(name, content, null, null);
+    const difficulty = document.getElementById('difficulty-select').value;
+    const expiringDate = document.getElementById('date-input').value;
+    return userData.createTaskObj(name, content, difficulty, expiringDate);
   };
 
   const deleteTodo = (key, taskName, todoDescription) => {
     storageHelpers.removeTodoFromTask(key, taskName, todoDescription);
+  };
+
+  const displayInfoTab = (key, objStr, reload) => {
+    const obj = JSON.parse(objStr);
+    const info = document.getElementById('task-info-container');
+    if (info) {
+      info.remove();
+    }
+    const btns = todoTab.renderTaskInfo(key, obj);
+    btns.editBtn.addEventListener('click', () => {
+      document.getElementById('task-info-container').remove();
+      if (!document.getElementById('task-form-container')) {
+        const editTaskForm = forms.newTaskForm(key);
+        placeholdData(obj);
+        editTaskForm.addEventListener('click', () => {
+          const item = gatherDataFromForm();
+          item.todos = obj.todos;
+          const validation = userData.validateTaskInput(item);
+          if (!Array.isArray(validation)) {
+            storageHelpers.removeTaskFromProject(key, obj);
+            storageHelpers.addNewTaskToProject(key, item);
+            reload();
+          }
+        });
+      }
+    });
+
+    btns.closeBtn.addEventListener('click', () => { document.getElementById('task-info-container').remove(); });
+
+    btns.deleteBtn.addEventListener('click', () => {
+      storageHelpers.removeTaskFromProject(key, obj);
+      reload();
+    });
+
+    if (storageHelpers.checkIfDateIsLate(key, obj.name)) {
+      btns.dateInfo.classList.add('date-field-warning');
+      btns.dateInfo.title = 'Task is Late';
+      btns.dateInfo.textContent = `${obj.date} - Task is Late`;
+    }
+    if (btns.difficultyInfo.textContent === 'Easy') {
+      btns.difficultyInfo.classList.add('easy-container');
+    } else if (btns.difficultyInfo.textContent === 'Medium') {
+      btns.difficultyInfo.classList.add('medium-container');
+    } else {
+      btns.difficultyInfo.classList.add('hard-container');
+    }
   };
 
   /*
@@ -107,14 +157,6 @@ const todoTabController = (() => {
               }
             });
           });
-          if (storageHelpers.checkIfDateIsLate(key, obj.name)) { taskBtns.dateInfo.classList.add('date-field-warning'); }
-          if (taskBtns.difficultyInfo.textContent === 'Easy') {
-            taskBtns.difficultyInfo.classList.add('easy-container');
-          } else if (taskBtns.difficultyInfo.textContent === 'Medium') {
-            taskBtns.difficultyInfo.classList.add('medium-container');
-          } else {
-            taskBtns.difficultyInfo.classList.add('hard-container');
-          }
           if (obj.todos.length > 0) {
             obj.todos.forEach((todo) => {
               const [description] = JSON.parse(todo);
@@ -141,22 +183,8 @@ const todoTabController = (() => {
               }
             });
           }
-          taskBtns.deleteBtn.addEventListener('click', () => {
-            storageHelpers.removeTaskFromProject(key, item);
-            displayTabContent();
-          });
-          taskBtns.editBtn.addEventListener('click', () => {
-            const editTaskForm = forms.newTaskForm(key);
-            placeholdData(JSON.parse(item));
-            editTaskForm.addEventListener('click', () => {
-              const validation = userData.validateTaskInput(obj);
-              if (!Array.isArray(validation)) {
-                const obj = gatherDataFromForm();
-                storageHelpers.removeTaskFromProject(key, item);
-                storageHelpers.addNewTaskToProject(key, obj);
-                displayTabContent();
-              }
-            });
+          taskBtns.nameBtn.addEventListener('click', () => {
+            displayInfoTab(key, item, displayTabContent);
           });
         }
       });
@@ -183,11 +211,13 @@ const todoTabController = (() => {
             displayTabCompletedContent();
           });
           btn.todoBtn.disabled = true;
+          /*
           btn.editBtn.disabled = true;
           btn.deleteBtn.addEventListener('click', () => {
             storageHelpers.removeTaskFromProject(key, obj);
             displayTabCompletedContent();
           });
+*/
         }
       });
     });

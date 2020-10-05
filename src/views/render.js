@@ -20,7 +20,15 @@ const render = (() => {
     return div;
   };
 
-  return { container };
+  const closeTabBtn = (parentElement) => {
+    container('close-btn-container', parentElement, 'flex-grid');
+    container(null, 'close-btn-container', 'col-10');
+    const btn = container(null, 'close-btn-container', ['col-2', 'close-button'], 'button');
+    btn.textContent = 'X';
+    return btn;
+  };
+
+  return { container, closeTabBtn };
 })();
 
 export default render;

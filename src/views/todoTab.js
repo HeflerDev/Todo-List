@@ -20,6 +20,32 @@ const todoTab = (() => {
     render.container(message, 'task-form-warning-container', ['col-12', 'warning-message']).textContent = message;
   };
 
+  const renderTaskInfo = (proj, obj) => {
+    const idString = `task-info-${proj}-${obj.name}`;
+    const taskNameId = `task-${proj}-${obj.name}`;
+    render.container('task-info-container', `${taskNameId}`, ['box', 'info']);
+    const closeBtn = render.closeTabBtn('task-info-container');
+    render.container(null, 'task-info-container', 'task-description', 'p').textContent = obj.content;
+    render.container(`${idString}-difficulty-container`, 'task-info-container');
+    const difficultyInfo = render.container(`${idString}-difficulty`, `${idString}-difficulty-container`);
+    difficultyInfo.textContent = obj.difficulty;
+    render.container(`${idString}-date-container`, 'task-info-container');
+    const dateInfo = render.container(`${idString}-date`, `${idString}-date-container`);
+    dateInfo.textContent = obj.date;
+    render.container(`${idString}-btn-container`, 'task-info-container', ['flex-grid']);
+    const editBtn = render.container(`${idString}-btn-edit`, `${idString}-btn-container`, ['col-6', 'btn-edit'], 'button');
+    editBtn.textContent = 'Edit';
+    const deleteBtn = render.container(`${idString}-btn-delete`, `${idString}-btn-container`, ['col-6', 'btn-danger'], 'button');
+    deleteBtn.textContent = 'Delete';
+    return {
+      closeBtn,
+      editBtn,
+      deleteBtn,
+      difficultyInfo,
+      dateInfo,
+    };
+  };
+
   const renderTask = (project, obj) => {
     const idString = `task-${project}-${obj.name}`;
 
@@ -27,33 +53,21 @@ const todoTab = (() => {
     render.container(`${idString}-container`, `task-${project}-${obj.name}`, ['flex-grid']);
     render.container(`${idString}-complete-task-container`, `${idString}-container`, ['col-1', 'minibox', 'no-bounds']);
     const completeTaskBtn = render.container(`${idString}-complete-task-btn`, `${idString}-complete-task-container`, ['complete-btn', 'minibox'], 'button');
-    render.container(`${idString}-content-task-name`, `${idString}-container`, ['col-10', 'minibox', 'no-bounds']).textContent = obj.name;
-    render.container(`${idString}-delete-button-container`, `${idString}-container`, ['col-1', 'minibox']);
-    const deleteBtn = render.container(null, `${idString}-delete-button-container`, ['btn-danger'], 'button');
-    deleteBtn.title = 'Delete Task';
-    const editBtn = render.container(null, `${idString}-delete-button-container`, ['minibox', 'no-bounds', 'btn-edit'], 'button');
-    editBtn.title = 'Edit Task';
-    render.container(null, `${idString}-container`, ['col-1']);
-    render.container(null, `${idString}-container`, ['col-11', 'start', 'task-description']).textContent = obj.content;
-    render.container(null, `${idString}-container`, 'col-1');
-    render.container(`${idString}-info-container`, `${idString}-container`, ['col-11', 'minibox', 'between', 'no-bounds']);
-    const difficultyInfo = render.container(`${idString}-details-difficulty`, `${idString}-info-container`);
-    difficultyInfo.textContent = obj.difficulty;
-    const dateInfo = render.container(`task-${project}-${obj.name}-details-date`, `${idString}-info-container`);
-    dateInfo.textContent = obj.date;
-    render.container(null, `${idString}-container`, 'col-1');
-    render.container(`${idString}-todo-button-container`, `${idString}-container`, ['col-11', 'minibox', 'end', 'no-bounds']);
+    const nameBtn = render.container('{idString}-content-task-name', `${idString}-container`, ['col-10', 'minibox', 'no-bounds', 'task-name']);
+    nameBtn.textContent = obj.name;
+    render.container(`${idString}-todo-button-container`, `${idString}-container`, ['col-1', 'minibox', 'end', 'no-bounds']);
     const todoBtn = render.container(`${idString}-todo-button`, `${idString}-todo-button-container`, ['no-bounds', 'btn-todo']);
     todoBtn.textContent = '+ Todo';
     render.container(null, `${idString}-container`, 'col-1');
     render.container(`${idString}-todo-container`, `${idString}-container`, 'col-11');
     return {
       todoBtn,
-      editBtn,
-      deleteBtn,
+      nameBtn,
+      // editBtn,
+      // deleteBtn,
       completeBtn: completeTaskBtn,
-      dateInfo,
-      difficultyInfo,
+      // dateInfo,
+      // difficultyInfo,
     };
   };
 
@@ -105,6 +119,7 @@ const todoTab = (() => {
     renderTodo,
     noProjectWarning,
     renderWarningMessage,
+    renderTaskInfo,
   };
 })();
 
