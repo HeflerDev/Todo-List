@@ -11,12 +11,10 @@ const storageHelpers = (() => {
   };
 
   const removeWebpackStorageLog = () => {
-    let REMOVE = localStorage.getItem('loglevel:webpack-dev-server');
+    const REMOVE = localStorage.getItem('loglevel:webpack-dev-server');
     if (REMOVE) {
-        localStorage.removeItem('loglevel:webpack-dev-server');
-        REMOVE = 'Found It'
+      localStorage.removeItem('loglevel:webpack-dev-server');
     }
-    console.log(REMOVE);
   };
 
   const findDataIndexByKey = (key, value) => {
@@ -186,7 +184,7 @@ const storageHelpers = (() => {
     gatherStorageData,
     checkIfDateIsLate,
     gatherCompletedTasksNames,
-      removeWebpackStorageLog,
+    removeWebpackStorageLog,
   };
 })();
 
