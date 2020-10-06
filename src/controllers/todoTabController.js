@@ -109,6 +109,7 @@ const todoTabController = (() => {
      */
 
   const displayTabContent = () => {
+    storageHelpers.removeWebpackStorageLog();
     if (!document.getElementById('new-project-btn')) {
       todoTab.newProjectBtn().addEventListener('click', () => {
         forms.newProjectForm().addEventListener('click', () => {
@@ -192,6 +193,7 @@ const todoTabController = (() => {
   };
 
   const displayTabCompletedContent = () => {
+    storageHelpers.removeWebpackStorageLog();
     if (document.getElementById('new-project-btn')) {
       document.getElementById('new-project-btn').remove();
     }

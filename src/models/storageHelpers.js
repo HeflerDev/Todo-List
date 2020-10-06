@@ -10,6 +10,14 @@ const storageHelpers = (() => {
     return false;
   };
 
+  const removeWebpackStorageLog = () => {
+    let REMOVE = localStorage.getItem('loglevel:webpack-dev-server');
+    if (REMOVE) {
+        localStorage.removeItem('loglevel:webpack-dev-server');
+        REMOVE = 'Found It'
+    }
+    console.log(REMOVE);
+  };
 
   const findDataIndexByKey = (key, value) => {
     const item = localStorage.getItem(key);
@@ -178,6 +186,7 @@ const storageHelpers = (() => {
     gatherStorageData,
     checkIfDateIsLate,
     gatherCompletedTasksNames,
+      removeWebpackStorageLog,
   };
 })();
 
