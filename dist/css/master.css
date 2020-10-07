@@ -1,4 +1,301 @@
 @import url(./reset.css);
 @import url(./framework.css);
+/* Color Pallete Theme Swatches in Hex */
+#left-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background-color: #96848D;
+  box-shadow: 0.1rem 0 0.2rem #6E7A93; }
+
+#project-form-container {
+  position: absolute;
+  background: #96848D;
+  border: solid #6E7A93 2px;
+  max-width: 35%;
+  min-width: 30%; }
+  #project-form-container .btn-primary {
+    background-color: gainsboro;
+    cursor: pointer; }
+
+#task-form-container {
+  position: absolute;
+  background: #96848D;
+  border: solid #6E7A93 2px;
+  max-width: 40%;
+  min-width: 35%;
+  border-radius: 10px; }
+  #task-form-container .btn-primary {
+    background-color: gainsboro; }
+
+button {
+  background: #e6e6f0;
+  border-radius: 0.2rem; }
+  button:hover {
+    transition: 0.2s;
+    transform: scale(1.05); }
+
+.info-container {
+  background-color: #e6e6f0;
+  color: #6E7A93;
+  padding: 2px;
+  margin-bottom: 2px;
+  border-radius: 20px;
+  transition: 0.2s; }
+  .info-container:hover {
+    background-color: #6E7A93;
+    color: #e6e6f0;
+    transition: 0.2s;
+    cursor: pointer; }
+
+.submit-btn {
+  border: solid #6E7A93 2px;
+  background-color: gainsboro;
+  cursor: pointer; }
+
+.btn-edit {
+  border: none;
+  background-color: yellow;
+  text-align: center;
+  vertical-align: middle; }
+
+.warning-message {
+  font-size: 0.8rem;
+  color: red;
+  margin-top: 0.2rem; }
+
+.new-task-btn {
+  background-color: #e6e6f0;
+  color: #0D0D0D;
+  transition: 0.2s; }
+  .new-task-btn:hover {
+    transition: 0.2s;
+    background-color: #0D0D0D;
+    color: #e6e6f0; }
+
+.no-bounds {
+  padding: 0; }
+
+.no-margin {
+  margin: 0;
+  background-color: none;
+  border: solid black 0;
+  border-left: solid black 1px;
+  border-radius: 0 10px 10px 0; }
+
+.whole-project-container {
+  border: solid #96848D 1px; }
+
+.project-container {
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, #e6e6f0 100%); }
+
+.task-description {
+  padding: 0;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #646464; }
+
+.task-name {
+  padding: 0.1rem;
+  border-radius: 4px;
+  transition: 1s; }
+  .task-name:hover {
+    transition: 0.2s;
+    background-color: #e6e6f0;
+    cursor: pointer; }
+
+.info {
+  box-shadow: 0 0 3px 2px #96848D;
+  border-radius: 10px;
+  background-color: #e6e6f0;
+  position: absolute;
+  width: 25%;
+  transition: 0.2s; }
+  .info:hover {
+    transition: 0.2s;
+    box-shadow: 0 0 4px 5px #6E7A93; }
+  .info .close-button {
+    border: none;
+    display: absolute;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-size: 12px; }
+
+.task-container {
+  transition: 1s;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.5rem; }
+  .task-container:hover {
+    transition: 0.2s;
+    box-shadow: 0 0 5px 1px #e6e6f0; }
+
+.task-field {
+  border: solid #c8c8c8 1px;
+  margin: auto;
+  padding: 10px;
+  background-color: #f5f5ff;
+  border-radius: 0.2rem; }
+
+.btn-primary {
+  color: #0D0D0D;
+  border: solid #6E7A93 1px;
+  background-color: #6E7A93;
+  transition: 0.2s; }
+  .btn-primary:hover {
+    color: #e6e6f0;
+    background-color: #0D0D0D; }
+
+.todo-container {
+  font-size: 0.8rem;
+  color: #6E7A93;
+  box-shadow: 1px 1px 1px 1px #e6e6f0;
+  background-color: whitesmoke; }
+
+.complete-btn {
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: 0.2s;
+  border: solid #6E7A93 1px;
+  background-color: white; }
+  .complete-btn:hover {
+    transition: 0.2s;
+    background-image: url("https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center; }
+
+.uncomplete-btn {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  border: solid #6E7A93 1px;
+  background-color: white;
+  background-image: url("https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center; }
+  .uncomplete-btn:hover {
+    background-image: none; }
+
+.completed-todo {
+  color: gray;
+  text-decoration: line-through;
+  font-size: 0.7rem; }
+
+.side-info {
+  text-align: left; }
+
+.icon-good {
+  color: green;
+  margin: auto; }
+
+.icon-bad {
+  margin: auto;
+  color: red; }
+
+.completed-btn {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  border: solid #6E7A93 1px;
+  background-image: url("https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+#todo-form-container {
+  background-color: #e6e6f0;
+  border: solid #6E7A93 1px;
+  border-radius: 0.1rem;
+  position: absolute;
+  max-width: 35%; }
+  #todo-form-container #todo-form-input {
+    border: none;
+    color: #6E7A93;
+    background-color: white;
+    border-bottom: solid #6E7A93 1px; }
+  #todo-form-container input {
+    background-color: #6E7A93;
+    color: whitesmoke;
+    border: none;
+    margin: 0;
+    padding: 3px; }
+
+.no-project-warning {
+  text-align: center;
+  margin: 3rem 0.2rem;
+  color: lightgray; }
+
+.new-project-btn {
+  border: solid gray 1px;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  margin: 4px auto;
+  display: flex; }
+
+.easy-container {
+  color: green; }
+
+.medium-container {
+  color: yellow; }
+
+.hard-container {
+  color: red; }
+
+.btn-secondary {
+  border: solid #96848D 2px;
+  background-color: gainsboro;
+  border-radius: 0.5rem; }
+
+.btn-todo {
+  margin-bottom: 0.2rem;
+  padding: 0.2rem;
+  transition: 0.1s;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+  color: #6E7A93;
+  background-color: #e6e6f0; }
+  .btn-todo:hover {
+    transform: scale(1.1);
+    transition: 0.1s;
+    background-color: #e6e6f0;
+    color: #96848D;
+    cursor: pointer; }
+
+.soft-button {
+  color: #96848D; }
+  .soft-button:hover {
+    cursor: pointer; }
+
+.btn-danger {
+  border: none;
+  background-color: #f02010;
+  color: whitesmoke; }
+
+.date-field-warning {
+  transition: 0.2s;
+  color: red;
+  box-shadow: 0 0 2px 2px red;
+  margin-bottom: 0.2rem; }
+  .date-field-warning:hover {
+    transition: 0.2s;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 0;
+    background-color: red;
+    color: white;
+    cursor: default; }
+
+.margin-1 {
+  margin: 0.5rem; }
+
+footer section {
+  height: 200px; }
 
 /*# sourceMappingURL=master.css.map */

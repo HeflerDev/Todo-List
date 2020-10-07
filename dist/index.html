@@ -4,39 +4,36 @@
     <meta charset="UTF-8">
     <title>Nice Page</title>
     <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
     <body>
-        <nav></nav>
-        <main class="flex-container">
-            <section class="left-section"></section>
-            <section class="content-section">
-                <!-- Test -->
-                    <section id="project-1">
-                        <div id="project-1-name">
-                            <p>Name Goes Here</p>
-                        </div>
-                        <form id="project-1-task-1">
-                            <label for="project-1-task-1-name">Name:</label>
-                            <input type="text" placeholder="Insert a name for the Task" id="project-1-task-1-name">
-                            <br>
-                            <label for="project-1-task-1-content">Content</label>
-                            <textarea id="project-1-task-1-content" name="" cols="30" rows="3"></textarea>
-                            <br>
-                            <label for="project-1-task-1-difficulty">Difficulty:</label>
-                            <select id="project-1-task-1-difficulty" name="">
-                                <option value="easy">Painless</option>
-                                <option value="medium">Moderate Effort</option>
-                                <option value="hard">Need total Attention and effort</option>
-                            </select>
-                            <br>
-                            <label for="project-1-task-1-date">Due Time</label>
-                            <input type="date">
-                            <input type="submit" value="Submit">
-                        </form>
-                    </section>
-                <!---------->
+        <nav class='box'>
+           <div class="minibox">
+                <div class="minibox between">
+                    <button id='todo-tab-btn' class='btn-primary'>Todos</button>
+                    <button id='todo-tab-btn-completed' class='btn-primary'>Completed Todos</button>
+                </div>
+                <div class="minibox around">
+                    <button disabled='true'>Sample Button</button>
+                    <button disabled='true'>Sample Button</button>
+                    <button disabled='true'>Sample Button</button>
+                </div>
+           </div>
+        </nav>
+        <main class="flex-grid">
+            <section id="left-section" class='col-12 col-m-6 col-l-3'>
+                <h3>Statistics</h3>
             </section>
+            <section id="content-section" class='col-12 col-m-6 col-l-9'></section>
         </main>
+        <footer class='box'>
+            <section class="flex-grid">
+                <div class="col-4"></div>
+                <div class="col-4"></div>
+                <div class="col-4"></div>
+            </section>
+
+        </footer>
         <script src="main.js"></script>
     </body>
 </html>

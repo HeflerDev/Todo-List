@@ -1,4 +1,377 @@
 @import  './reset.css' ;
 @import './framework.css' ;
 
+/* Color Pallete Theme Swatches in Hex */
+$MINIMALISTA-1-hex: #96848D;
+$MINIMALISTA-2-hex: #6E7A93;
+$MINIMALISTA-3-hex: #8F99A1;
+$MINIMALISTA-4-hex: #D5D5D5;
+$MINIMALISTA-5-hex: #0D0D0D;
+
+$color-secondary: #96848D;
+$color-primary: #6E7A93;
+$color-soft: rgb(230,230,240);
+$color-dark: #0D0D0D;
+$border-primary: 1px;
+$border-secondary: 2px;
+$color-danger: rgb(240,32,16) ;
+$color-soft-button: rgb(220,220,220);
+$color-soft-gradient: linear-gradient(90deg, rgba(2,0,36,0) 0%, $color-soft 100%);
+$soft-white: rgb(245, 245, 255);
+$color-soft-gradient-180: linear-gradient(180deg, rgba(2,0,36,0) 0%, $soft-white 100%);
+$color-text-secondary: rgb(100,100,100);
+
+#left-section {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background-color: $color-secondary;
+    box-shadow: 0.1rem 0  0.2rem $color-primary;
+}
+
+#project-form-container {
+    position:absolute;
+    background: $color-secondary;
+    border: solid $color-primary 2px;
+    max-width: 35%;
+    min-width: 30%;
+    .btn-primary {
+        background-color: $color-soft-button;
+        cursor: pointer;
+    }
+}
+
+#task-form-container {
+    position: absolute;
+    background: $color-secondary;
+    border: solid $color-primary 2px;
+    max-width: 40%;
+    min-width: 35%;
+    border-radius: 10px;
+    .btn-primary {
+        background-color: $color-soft-button;
+    }
+}
+
+button{
+    background: $color-soft;
+    border-radius: 0.2rem;
+     &:hover{
+        transition: 0.2s;
+        transform:scale(1.05);
+    }
+}
+
+.info-container {
+    background-color: $color-soft;
+    color: $color-primary;
+    padding: 2px;
+    margin-bottom: 2px;
+    border-radius: 20px;
+    transition: 0.2s;
+    &:hover {
+        background-color: $color-primary;
+        color: $color-soft;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+}
+
+.submit-btn {
+    border: solid $color-primary 2px;
+    background-color: $color-soft-button;
+    cursor: pointer;
+}
+
+.btn-edit {
+    border: none;
+    background-color:yellow;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.warning-message {
+    font-size: 0.8rem;
+    color:red;
+    margin-top:0.2rem;
+}
+
+.new-task-btn {
+    background-color: $color-soft;
+    color: $color-dark;
+    transition: 0.2s;
+    &:hover {
+        transition: 0.2s;
+        background-color: $color-dark;
+        color: $color-soft;
+    }
+}
+
+.no-bounds {
+    padding:0;
+}
+
+.no-margin {
+    margin: 0;
+    background-color:none;
+    border: solid black 0;
+    border-left: solid black 1px;
+    border-radius: 0 10px 10px 0;
+}
+
+.whole-project-container {
+    border: solid $color-secondary 1px;
+}
+
+.project-container {
+    border-radius: 0 10px 10px 0;
+    background: $color-soft-gradient;
+}
+
+.task-description {
+    padding: 0;
+    font-size: 0.7rem;
+    text-align: center;
+    color: $color-text-secondary;
+}
+
+.task-name {
+    padding: 0.1rem;
+    border-radius: 4px;
+    transition: 1s;
+    &:hover {
+        transition: 0.2s;
+        background-color: $color-soft;
+        cursor: pointer;
+    }
+}
+
+.info {
+    box-shadow: 0 0 3px 2px $color-secondary;
+    border-radius: 10px;
+    background-color: $color-soft;
+    position: absolute;
+    width: 25%;
+    transition: 0.2s;
+    &:hover {
+        transition: 0.2s;
+        box-shadow: 0 0 4px 5px $color-primary;
+    }
+    .close-button {
+        border: none;
+        display: absolute;
+        background-color: red;
+        color: white;
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
+.task-container {
+    transition: 1s;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    &:hover {
+        transition: 0.2s;
+        box-shadow: 0 0 5px 1px $color-soft;
+    }
+}
+
+.task-field {
+    border: solid rgb(200,200,200) 1px;
+    margin:auto;
+    padding: 10px;
+    background-color: $soft-white;
+    border-radius: 0.2rem;
+}
+
+.btn-primary {
+    color: $color-dark;
+    border: solid $color-primary $border-primary;
+    background-color: $color-primary;
+    transition: 0.2s;
+    &:hover {
+        color: $color-soft;
+        background-color: $color-dark;
+    }
+}
+
+.todo-container {
+    font-size: 0.8rem;
+    color: $color-primary;
+    box-shadow: 1px 1px 1px 1px $color-soft;
+    background-color: rgb(245,245,245);
+}
+
+.complete-btn {
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: 0.2s;
+    border: solid $color-primary 1px;
+    background-color: rgba(255,255,255,1.0);
+    &:hover {
+        transition: 0.2s;
+        background-image: url('https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.uncomplete-btn {
+    border-radius: 50%;
+    width: 10px ;
+    height: 10px;
+    border: solid $color-primary 1px;
+    background-color: rgba(255,255,255,1.0);
+    background-image: url('https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:hover {
+        background-image: none;
+    }
+}
+
+.completed-todo {
+    color: gray;
+    text-decoration: line-through;
+    font-size: 0.7rem;
+}
+
+.side-info {
+    text-align: left;
+}
+
+.icon-good {
+ color: green;
+ margin: auto;
+}
+
+.icon-bad {
+    margin: auto;
+    color: red;
+}
+
+.completed-btn {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: solid $color-primary 1px;
+    background-image: url('https://toppng.com/uploads/preview/check-mark-png-11553206004impjy81rdu.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#todo-form-container {
+   background-color: $color-soft;
+   border: solid $color-primary 1px;
+   border-radius: 0.1rem;
+   position: absolute;
+   max-width: 35%;
+   #todo-form-input {
+    border: none;
+    color: $color-primary;
+    background-color:rgba(255,255,255,1);
+    border-bottom: solid $color-primary 1px;
+   }
+   input {
+    background-color: $color-primary;
+    color: whitesmoke;
+    border: none;
+    margin:0;
+    padding:3px;
+   }
+};
+
+.no-project-warning {
+    text-align:center;
+    margin: 3rem 0.2rem;
+    color: lightgray;
+}
+
+.new-project-btn {
+   border: solid gray 1px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,1.0);
+  text-align:center;
+  margin: 4px auto;
+  display:flex;
+}
+
+.easy-container {
+    color: green;
+}
+
+.medium-container {
+    color:yellow;
+}
+
+.hard-container {
+    color: red;
+}
+
+.btn-secondary {
+    border: solid $color-secondary $border-secondary;
+    background-color: $color-soft-button;
+    border-radius: 0.5rem;
+}
+
+.btn-todo {
+    margin-bottom: 0.2rem;
+    padding: 0.2rem;
+    transition: 0.1s;
+    font-size: 0.9rem;
+    border-radius: 1rem;
+   color:$color-primary;
+   background-color: $color-soft;
+   &:hover {
+        transform:scale(1.1);
+        transition: 0.1s;
+        background-color: $color-soft;
+        color: $color-secondary;
+        cursor:pointer;
+   }
+}
+
+.soft-button {
+    color: $color-secondary;
+    &:hover {
+        cursor:pointer;
+    }
+}
+
+.btn-danger {
+    border: none;
+    background-color: $color-danger;
+    color: whitesmoke;
+}
+
+.date-field-warning {
+    transition: 0.2s;
+   color: red;
+   box-shadow: 0 0 2px 2px red;
+   margin-bottom: 0.2rem;
+    &:hover {
+        transition: 0.2s;
+        transform: scale(1.1);
+        box-shadow: 0 0 0 0;
+        background-color:red;
+        color:white;
+        cursor:default;
+    }
+}
+
+.margin-1 {
+    margin: 0.5rem;
+}
+
+footer section {
+    height: 200px;
+}
 
